@@ -119,6 +119,77 @@ pub fn is_font_file(bytes: &[u8]) -> bool {
     matches!(bytes.get(..4), Some([0, 1, 0, 0]) | Some(b"OTTO") | Some(b"true"))
 }
 
+/// What the host can ask the open drawing to do besides handing out bytes: layer visibility,
+/// the layout shown and the zoom. `name` is at most [`NAME_MAX`] characters.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum Action {
+    SetLayerVisible { name: String, visible: bool },
+    SetLayout { name: String },
+    ZoomExtents,
+}
+
+/// The longest layer or layout name taken.
+pub const NAME_MAX: usize = 255;
+
+/// The action of one `cadcraft:action` message, or why it is refused (`bad-action`).
+pub fn parse_action(kind: &str, name: Option<String>, visible: Option<bool>) -> Result<Action, &'static str> {
+    let name = name.filter(|n| !n.is_empty() && n.chars().count() <= NAME_MAX);
+    match (kind, name, visible) {
+        ("set-layer-visible", Some(name), Some(visible)) => Ok(Action::SetLayerVisible { name, visible }),
+        ("set-layout", Some(name), _) => Ok(Action::SetLayout { name }),
+        ("zoom-extents", _, _) => Ok(Action::ZoomExtents),
+        _ => Err("bad-action"),
+    }
+}
+
+impl Action {
+    /// The engine command and its parameters.
+    pub fn command(&self) -> (&'static str, serde_json::Value) {
+        match self {
+            Self::SetLayerVisible { name, visible } => ("layer.set", serde_json::json!({ "name": name, "on": visible })),
+            Self::SetLayout { name } => ("layout.set", serde_json::json!({ "name": name })),
+            Self::ZoomExtents => ("zoom.extents", serde_json::json!({})),
+        }
+    }
+}
+
+/// The `reason` of a failed action from the engine's error text: a name that isn't there is
+/// `not-found`, a read-only refusal `read-only`, anything else the text itself.
+pub fn action_reason(error: &str) -> String {
+    let lower = error.to_ascii_lowercase();
+    if lower.contains("read only") {
+        "read-only".to_string()
+    } else if lower.contains("no layer") || lower.contains("no layout") || lower.contains("not found") || lower.contains("unknown layout") {
+        "not-found".to_string()
+    } else {
+        error.chars().take(200).collect()
+    }
+}
+
+/// The most layers, layouts and read notes one `cadcraft:info` carries.
+pub const INFO_LAYERS_MAX: usize = 5000;
+pub const INFO_LAYOUTS_MAX: usize = 500;
+pub const INFO_NOTES_MAX: usize = 50;
+
+/// The drawing summary a host gets, cut from the engine's `drawing.inspect` (no entity list, no
+/// selection or undo history) and capped so a huge drawing can't make a huge message.
+pub fn drawing_info(inspect: &serde_json::Value) -> serde_json::Value {
+    use serde_json::{Value, json};
+    let list = |key: &str, max: usize| -> Vec<Value> { inspect.get(key).and_then(Value::as_array).map(|a| a.iter().take(max).cloned().collect()).unwrap_or_default() };
+    let get = |key: &str| inspect.get(key).cloned().unwrap_or(Value::Null);
+    json!({
+        "title": get("title"),
+        "space": get("space"),
+        "entityCount": get("entityCount"),
+        "counts": get("counts"),
+        "extents": get("extents"),
+        "currentLayer": get("currentLayer"),
+        "layers": list("layers", INFO_LAYERS_MAX),
+        "layouts": list("layouts", INFO_LAYOUTS_MAX),
+        "readNotes": list("readNotes", INFO_NOTES_MAX),
+    })
+}
+
 /// The most fonts one `cadcraft:add-fonts` takes; the rest are reported as failed.
 pub const MAX_FONTS_PER_MESSAGE: usize = 64;
 /// The most font bytes one `cadcraft:add-fonts` takes in all.
@@ -189,5 +260,38 @@ mod tests {
         assert_eq!(bytes_purpose("export"), None);
         assert_eq!(echo_purpose(&"p".repeat(500)).chars().count(), 200);
         assert!(font_format_ok("ttf") && font_format_ok("otf") && !font_format_ok("woff"));
+    }
+
+    #[test]
+    fn actions_are_parsed_and_mapped_to_commands() {
+        assert_eq!(parse_action("zoom-extents", None, None), Ok(Action::ZoomExtents));
+        assert_eq!(parse_action("set-layout", Some("Layout1".into()), None).unwrap().command(), ("layout.set", serde_json::json!({ "name": "Layout1" })));
+        assert_eq!(
+            parse_action("set-layer-visible", Some("WALLS".into()), Some(false)).unwrap().command(),
+            ("layer.set", serde_json::json!({ "name": "WALLS", "on": false }))
+        );
+        assert_eq!(parse_action("set-layer-visible", Some("WALLS".into()), None), Err("bad-action"));
+        assert_eq!(parse_action("set-layout", Some(String::new()), None), Err("bad-action"));
+        assert_eq!(parse_action("set-layout", Some("x".repeat(NAME_MAX + 1)), None), Err("bad-action"));
+        assert_eq!(parse_action("erase-all", None, None), Err("bad-action"));
+    }
+
+    #[test]
+    fn action_errors_get_a_reason() {
+        assert_eq!(action_reason("layer.set: no layer `X`"), "not-found");
+        assert_eq!(action_reason("this drawing is read only"), "read-only");
+        assert_eq!(action_reason("boom"), "boom");
+    }
+
+    #[test]
+    fn the_info_is_cut_and_capped() {
+        let layers: Vec<_> = (0..INFO_LAYERS_MAX + 10).map(|i| serde_json::json!({ "name": format!("L{i}") })).collect();
+        let raw = serde_json::json!({ "title": "a.dxf", "space": "Model", "entityCount": 3, "layers": layers, "layouts": ["Layout1"],
+            "selection": ["1A"], "undo": ["x"], "entities": [1] });
+        let info = drawing_info(&raw);
+        assert_eq!(info["layers"].as_array().unwrap().len(), INFO_LAYERS_MAX);
+        assert_eq!(info["layouts"], serde_json::json!(["Layout1"]));
+        assert!(info.get("selection").is_none() && info.get("undo").is_none() && info.get("entities").is_none());
+        assert_eq!(info["readNotes"], serde_json::json!([]));
     }
 }

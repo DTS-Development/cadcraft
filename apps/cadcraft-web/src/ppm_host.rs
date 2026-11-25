@@ -18,6 +18,15 @@
 //!   `preview`: the drawing as it is now, as DXF. `cadcraft:bytes`: `{ id, purpose, name, bytes }`.
 //!   With `save` the drawing counts as saved. `cadcraft:bytes-failed`: `{ id, purpose, reason }`,
 //!   `reason` `not-ready`, `read-only`, `bad-purpose` or an error text.
+//! - `cadcraft:opened` (to the parent): `{}`, a drawing was opened and is drawn from the next frame.
+//! - `cadcraft:request-info` (from the parent): `{ id }`, `cadcraft:info`: `{ id, info }`, `info`
+//!   the JSON text of the drawing summary ([`gate::drawing_info`]); `cadcraft:info-failed`:
+//!   `{ id, reason }`.
+//! - `cadcraft:action` (from the parent): `{ id, action, name?, visible? }`, `action`
+//!   `set-layer-visible` (`name`, `visible`), `set-layout` (`name`, `Model` or a layout) or
+//!   `zoom-extents`; `cadcraft:action-result`: `{ id, ok, reason? }`, `reason` `not-ready`,
+//!   `read-only` (a layer change in a read-only drawing), `not-found`, `bad-action` or an error
+//!   text. These calls ignore the host's menu overrides; only a read-only drawing refuses.
 //! - `cadcraft:add-fonts` (from the parent): `{ id, fonts: [{ family, bytes, format }] }` and
 //!   `cadcraft:fonts-added`: `{ id, installed, failed }`.
 //!
@@ -57,6 +66,8 @@ pub struct Bridge {
     origin: String,
     opens: Rc<RefCell<Vec<PendingOpen>>>,
     byte_requests: Rc<RefCell<Vec<(String, &'static str)>>>,
+    actions: Rc<RefCell<Vec<(String, gate::Action)>>>,
+    info_requests: Rc<RefCell<Vec<String>>>,
     /// A drawing was opened, so there is one to answer `request-bytes` with.
     opened: Rc<Cell<bool>>,
     /// Fonts were added: the next frame regenerates the drawings with them.
@@ -83,6 +94,8 @@ impl Bridge {
             origin,
             opens: Rc::default(),
             byte_requests: Rc::default(),
+            actions: Rc::default(),
+            info_requests: Rc::default(),
             opened: Rc::default(),
             regen: Rc::default(),
             reported: Rc::default(),
@@ -116,6 +129,12 @@ impl Bridge {
         for (id, purpose) in std::mem::take(&mut *self.byte_requests.borrow_mut()) {
             self.answer_bytes(app, id, purpose);
         }
+        for id in std::mem::take(&mut *self.info_requests.borrow_mut()) {
+            self.answer_info(app, id);
+        }
+        for (id, action) in std::mem::take(&mut *self.actions.borrow_mut()) {
+            self.answer_action(app, id, &action);
+        }
     }
 
     /// Open one drawing under the options that came with it. A failed open puts the earlier lock
@@ -129,7 +148,10 @@ impl Bridge {
         hostlock::host_entry(|| app.open_bytes(&open.name, &open.bytes));
         let errors = app.take_open_errors();
         match errors.first() {
-            None => self.opened.set(true),
+            None => {
+                self.opened.set(true);
+                self.send(&[("type", "cadcraft:opened".into())]);
+            }
             Some(error) => {
                 hostlock::install(earlier_lock);
                 app.host_view = earlier_view;
@@ -145,6 +167,53 @@ impl Bridge {
         if self.reported.get() != Some(dirty) && self.send(&[("type", "cadcraft:dirty".into()), ("dirty", dirty.into())]) {
             self.reported.set(Some(dirty));
         }
+    }
+
+    /// Run `f` as the host page: its menu overrides do not apply (they steer the user's menus), but
+    /// a read-only drawing still refuses what edits it.
+    fn as_host<R>(app: &mut CadApp, f: impl FnOnce(&mut CadApp) -> R) -> R {
+        let read_only = hostlock::is_read_only();
+        let earlier = hostlock::install(Some(Lock { read_only, overrides: Default::default() }));
+        let r = f(app);
+        hostlock::install(earlier);
+        r
+    }
+
+    fn answer_info(&self, app: &mut CadApp, id: String) {
+        let result = if !self.opened.get() || app.session.state().is_err() {
+            Err("not-ready".to_string())
+        } else {
+            Self::as_host(app, |app| app.run("drawing.inspect", serde_json::json!({ "entities": false })))
+        };
+        match result {
+            Ok(inspect) => {
+                let info = gate::drawing_info(&inspect).to_string();
+                self.send(&[("type", "cadcraft:info".into()), ("id", id.as_str().into()), ("info", info.as_str().into())]);
+            }
+            Err(reason) => {
+                self.send(&[("type", "cadcraft:info-failed".into()), ("id", id.as_str().into()), ("reason", reason.as_str().into())]);
+            }
+        }
+    }
+
+    fn answer_action(&self, app: &mut CadApp, id: String, action: &gate::Action) {
+        let result = self.run_action(app, action);
+        let mut fields = vec![("type", "cadcraft:action-result".into()), ("id", id.as_str().into()), ("ok", result.is_ok().into())];
+        if let Err(reason) = &result {
+            fields.push(("reason", reason.as_str().into()));
+        }
+        self.send(&fields);
+    }
+
+    fn run_action(&self, app: &mut CadApp, action: &gate::Action) -> Result<(), String> {
+        if !self.opened.get() || app.session.state().is_err() {
+            return Err("not-ready".into());
+        }
+        let (command, params) = action.command();
+        if hostlock::is_read_only() && !hostlock::read_only_ok(command) {
+            return Err("read-only".into());
+        }
+        Self::as_host(app, |app| app.run(command, params)).map(|_| ()).map_err(|e| gate::action_reason(&e))
     }
 
     fn answer_bytes(&self, app: &mut CadApp, id: String, purpose: &'static str) {
@@ -197,6 +266,7 @@ impl Bridge {
     pub fn listen(&self, ctx: egui::Context) {
         let (parent, origin) = (self.parent.clone(), self.origin.clone());
         let (opens, byte_requests, regen) = (self.opens.clone(), self.byte_requests.clone(), self.regen.clone());
+        let (actions, info_requests) = (self.actions.clone(), self.info_requests.clone());
         let me = self.clone();
         let on_message = Closure::<dyn FnMut(web_sys::MessageEvent)>::new(move |event: web_sys::MessageEvent| {
             if event.origin() != origin || !event.source().is_some_and(|s| js_sys::Object::is(&s, &parent)) {
@@ -231,6 +301,20 @@ impl Bridge {
                                 ("reason", "bad-purpose".into()),
                             ];
                             me.send(&fields);
+                        }
+                    }
+                }
+                Some("cadcraft:request-info") => {
+                    let Some(id) = string(&data, "id").and_then(|id| gate::request_id(&id)) else { return };
+                    info_requests.borrow_mut().push(id);
+                }
+                Some("cadcraft:action") => {
+                    let Some(id) = string(&data, "id").and_then(|id| gate::request_id(&id)) else { return };
+                    let kind = string(&data, "action").unwrap_or_default();
+                    match gate::parse_action(&kind, string(&data, "name"), boolean(&data, "visible")) {
+                        Ok(action) => actions.borrow_mut().push((id, action)),
+                        Err(reason) => {
+                            me.send(&[("type", "cadcraft:action-result".into()), ("id", id.as_str().into()), ("ok", false.into()), ("reason", reason.into())]);
                         }
                     }
                 }

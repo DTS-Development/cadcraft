@@ -43,9 +43,6 @@ mod web {
     /// and the document title last written to the page.
     struct Shell(CadApp, crate::upload::Inbox, Option<crate::host::Bridge>, Option<web_sys::MediaQueryList>, Option<String>);
 
-    /// The PPM build: the lock, not the menu, is what keeps a drawing read only; a drawing the host
-    /// opened under it is the one thing that runs before the app's own frame.
-
     impl eframe::App for Shell {
         /// Runs one frame: takes in files dropped on or picked for the page, drains the background
         /// uploads, follows the browser's reduced-motion setting, runs the app, writes the browser

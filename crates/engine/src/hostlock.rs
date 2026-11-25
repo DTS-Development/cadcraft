@@ -412,6 +412,36 @@ mod tests {
         assert_eq!(s.doc().unwrap().entity_count(), 0);
     }
 
+    /// The calls a host page makes for the viewer (`drawing.inspect`, `layout.set`, `zoom.extents`,
+    /// `layer.set`): the first three run in a read-only drawing and leave it unchanged; a layer
+    /// change is an edit there, and elsewhere it marks the drawing as changed.
+    #[test]
+    fn the_host_calls_are_views_except_the_layer_change() {
+        let mut s = crate::Session::new();
+        s.execute("layer.new", &serde_json::json!({ "name": "WALLS" })).unwrap();
+        s.state_mut().unwrap().saved = s.state().unwrap().doc.clone();
+        let layout = s.doc().unwrap().layouts.first().map(|l| l.name.clone());
+        with_lock(Lock { read_only: true, ..Lock::default() }, || {
+            let info = s.execute("drawing.inspect", &serde_json::json!({ "entities": false })).unwrap();
+            assert!(info["layers"].as_array().unwrap().iter().any(|l| l["name"] == "WALLS"));
+            s.execute("zoom.extents", &serde_json::json!({})).unwrap();
+            if let Some(name) = &layout {
+                s.execute("layout.set", &serde_json::json!({ "name": name })).unwrap();
+                assert_eq!(s.execute("drawing.inspect", &serde_json::json!({ "entities": false })).unwrap()["space"], serde_json::json!(name));
+            }
+            s.execute("layout.set", &serde_json::json!({ "name": "Model" })).unwrap();
+            assert!(!s.state().unwrap().is_dirty());
+            let e = s.execute("layer.set", &serde_json::json!({ "name": "WALLS", "on": false })).unwrap_err();
+            assert!(e.to_string().contains("read only"), "{e}");
+        });
+        s.execute("layer.set", &serde_json::json!({ "name": "WALLS", "on": false })).unwrap();
+        let info = s.execute("drawing.inspect", &serde_json::json!({ "entities": false })).unwrap();
+        assert!(info["layers"].as_array().unwrap().iter().any(|l| l["name"] == "WALLS" && l["on"] == false));
+        assert!(s.state().unwrap().is_dirty());
+        let e = s.execute("layout.set", &serde_json::json!({ "name": "Nope" })).unwrap_err();
+        assert!(e.to_string().contains("no layout"), "{e}");
+    }
+
     #[test]
     fn a_failed_open_can_put_the_earlier_lock_back() {
         let first = Lock { read_only: true, ..Lock::default() };
