@@ -610,6 +610,28 @@ pub fn start_page(app: &mut CadApp, ui: &mut egui::Ui) {
     }
 }
 
+/// The zoom bar a host page asks for when it hides the rest of the interface (`zoomControls`):
+/// zoom out, zoom in and zoom to the drawing's extents, over the drawing's corner. The buttons
+/// run the ordinary zoom commands, which a read-only drawing allows.
+pub fn zoom_bar(app: &mut CadApp, ui: &mut egui::Ui) {
+    let t = Tokens::get();
+    egui::Area::new(egui::Id::unique("cc_zoom_bar")).order(egui::Order::Foreground).anchor(egui::Align2::RIGHT_BOTTOM, vec2(-12.0, -12.0)).show(
+        ui.ctx(),
+        |ui| {
+            egui::Frame::NONE.fill(t.chrome).stroke(Stroke::new(1.0, t.border)).corner_radius(4).inner_margin(egui::Margin::same(4)).show(ui, |ui| {
+                ui.horizontal(|ui| {
+                    let buttons = [("\u{2212}", "Zoom Out", "zoom.out"), ("+", "Zoom In", "zoom.in"), (crate::i18n::t("Extents"), "Zoom Extents", "zoom.extents")];
+                    for (label, hover, id) in buttons {
+                        if ui.button(label).on_hover_text(crate::i18n::t(hover)).clicked() {
+                            let _ = app.run(id, json!({}));
+                        }
+                    }
+                });
+            });
+        },
+    );
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

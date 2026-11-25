@@ -860,19 +860,31 @@ fn run_switch(s: &mut Session, p: &Value) -> Result<Value> {
 }
 
 fn run_bytes(s: &mut Session, p: &Value) -> Result<Value> {
+    let (bytes, mut r) = document_bytes(s, p)?;
+    if let Some(o) = r.as_object_mut() {
+        o.insert("data".into(), Value::String(base64_encode(&bytes)));
+    }
+    Ok(r)
+}
+
+/// The active drawing written as `document.bytes` writes it (`{format?, version?, binary?,
+/// portableFonts?}`), as raw bytes, with the reply's other fields (`bytes`, what the format
+/// loses). A host page takes the bytes from here: no base64 round trip, and no command check
+/// (the caller decides whether the drawing may be handed out).
+pub fn document_bytes(s: &mut Session, p: &Value) -> Result<(Vec<u8>, Value)> {
     let fmt = str_param(p, "format").unwrap_or("dxf");
     let opts = save_options("document.bytes", p)?;
     let version = opts.version.unwrap_or_else(|| drawing_version(s, &format!("drawing.{fmt}")));
     let lost = not_saved_as(s.doc()?, version);
     let bytes = write_bytes(s, "document.bytes", &format!("drawing.{fmt}"), &opts)?;
-    let mut r = json!({ "data": base64_encode(&bytes), "bytes": bytes.len() });
+    let mut r = json!({ "bytes": bytes.len() });
     if drops_unknown(format!("drawing.{fmt}")) {
         report_not_saved(s, &mut r, &lost);
     } else if is_dxf_file(format!("drawing.{fmt}")) {
         let lost = host_dxf_lost(s, version);
         report_lost(s, &mut r, "drawing.dxf", version, &lost);
     }
-    Ok(r)
+    Ok((bytes, r))
 }
 
 /// Entities a DXF or DWG file doesn't keep: those of object types CADCraft doesn't model

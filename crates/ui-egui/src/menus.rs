@@ -147,6 +147,12 @@ pub fn is_ui_command(id: &str) -> bool {
 
 /// Run a UI-only command. `None` if `id` isn't one.
 pub fn run_ui_command(app: &mut CadApp, id: &str, params: &Value) -> Option<Result<Value, String>> {
+    // The host page's lock (PPM build) comes first: the interface handles OPEN, SAVEAS and the
+    // `ui.*` pickers itself, before the engine would be asked.
+    if let Some(why) = cadcraft_engine::hostlock::refusal(id) {
+        app.set_status(why.clone());
+        return Some(Err(why));
+    }
     crate::i18n::with_language(app.language(), || run_ui_command_inner(app, id, params))
 }
 
@@ -687,6 +693,12 @@ pub fn tree(app: &CadApp) -> Vec<(String, Vec<Entry>)> {
     let mut out: Vec<(String, Vec<Entry>)> = MENUS.iter().map(|m| (m.to_string(), Vec::new())).collect();
     let user = &app.ui.shortcuts;
     let mut add = |path: &[&str], label: &str, id: &str, shortcut: Option<&str>, enabled: bool| {
+        // The host page's lock: a locked or switched-off command is not in the menu, and one a
+        // read-only drawing refuses is greyed out.
+        if cadcraft_engine::hostlock::hidden(id) {
+            return;
+        }
+        let enabled = enabled && cadcraft_engine::hostlock::refusal(id).is_none();
         let Some((top, rest)) = path.split_first() else { return };
         let Some((_, entries)) = out.iter_mut().find(|(m, _)| m == top) else { return };
         let mut cur = entries;

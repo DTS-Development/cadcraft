@@ -53,6 +53,7 @@ pub mod dyngrips;
 pub mod dyninput;
 pub mod gpu;
 pub mod grip_dyn;
+pub mod host_lock;
 pub mod i18n;
 pub mod icons;
 pub mod keys;
@@ -277,6 +278,22 @@ struct PendingPick {
     then: PickDone,
 }
 
+/// How a host page asked the drawing to be shown (`chrome` and `zoomControls` of its open
+/// message). The default is today's interface.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct HostView {
+    /// False hides the menus, tool bars, palettes, tabs, status bar and command line: the drawing alone.
+    pub chrome: bool,
+    /// True keeps zoom in, zoom out and zoom to extents on the drawing when `chrome` is off.
+    pub zoom_controls: bool,
+}
+
+impl Default for HostView {
+    fn default() -> Self {
+        Self { chrome: true, zoom_controls: false }
+    }
+}
+
 pub struct CadApp {
     pub system_languages: Vec<String>,
     /// Whether the operating system shows animations, as the host reads it; `None` when the OS
@@ -289,6 +306,10 @@ pub struct CadApp {
     pub native_menus: bool,
     pub session: Session,
     pub ui: UiState,
+    /// How a host page asked the drawing to be shown (PPM build): the default is the full interface.
+    pub host_view: HostView,
+    /// Why drawings could not be opened since the host last asked ([`Self::take_open_errors`]).
+    open_errors: Vec<String>,
     /// The interface's own preferences from the Options dialog ([`options`]).
     pub options: options::UiOptions,
     pub services: Services,
@@ -390,6 +411,8 @@ impl CadApp {
             native_menus: cfg!(target_os = "macos"),
             session,
             ui: UiState::default(),
+            host_view: HostView::default(),
+            open_errors: Vec::new(),
             options: options::UiOptions::default(),
             services,
             canvas: canvas::CanvasState::default(),
@@ -904,12 +927,22 @@ impl CadApp {
     pub fn open_failed(&mut self, e: impl Into<String>) {
         let e = e.into();
         self.session.echo(e.clone());
+        self.open_errors.push(e.clone());
         self.set_status(e);
+    }
+
+    /// The reasons drawings could not be opened since the last call, for a host page to hear
+    /// (`cadcraft:failed`); the command line and status bar already showed them.
+    pub fn take_open_errors(&mut self) -> Vec<String> {
+        std::mem::take(&mut self.open_errors)
     }
 
     fn opened(&mut self, r: Result<Value, String>) {
         match r {
-            Err(e) => self.set_status(e),
+            Err(e) => {
+                self.open_errors.push(e.clone());
+                self.set_status(e)
+            }
             Ok(v) => {
                 self.ui.start_tab = false;
                 // A drawing that opened on the view it was saved at keeps it (#1626).
@@ -1165,27 +1198,40 @@ impl CadApp {
         self.sync_bars();
         control::begin_frame(ui.ctx());
         let t = theme::Tokens::get();
-        chrome::title_and_toolbar(self, ui);
-        if self.ui.in_window_menu {
-            menus::menu_bar(self, ui);
-        }
-        if self.ui.show_status_bar {
-            chrome::status_bar(self, ui);
-        }
-        if self.ui.show_file_tabs {
-            chrome::file_tabs(self, ui);
-        }
         let has_doc = !self.session.docs.is_empty() && !self.ui.start_tab;
-        if has_doc && !self.ui.show_toolsets {
-            palettes::toolsets_strip(self, ui);
-        }
-        egui::CentralPanel::default().frame(egui::Frame::NONE.fill(t.canvas)).show(ui, |ui| {
-            if has_doc {
-                docking::show(self, ui);
-            } else {
-                chrome::start_page(self, ui);
+        if !self.host_view.chrome {
+            // A host page asked for the drawing alone: no menus, bars, palettes, tabs or command
+            // line (the zoom bar stays when asked for).
+            egui::CentralPanel::default().frame(egui::Frame::NONE.fill(t.canvas)).show(ui, |ui| {
+                if has_doc {
+                    canvas::show(self, ui);
+                    if self.host_view.zoom_controls {
+                        chrome::zoom_bar(self, ui);
+                    }
+                }
+            });
+        } else {
+            chrome::title_and_toolbar(self, ui);
+            if self.ui.in_window_menu {
+                menus::menu_bar(self, ui);
             }
-        });
+            if self.ui.show_status_bar {
+                chrome::status_bar(self, ui);
+            }
+            if self.ui.show_file_tabs {
+                chrome::file_tabs(self, ui);
+            }
+            if has_doc && !self.ui.show_toolsets {
+                palettes::toolsets_strip(self, ui);
+            }
+            egui::CentralPanel::default().frame(egui::Frame::NONE.fill(t.canvas)).show(ui, |ui| {
+                if has_doc {
+                    docking::show(self, ui);
+                } else {
+                    chrome::start_page(self, ui);
+                }
+            });
+        }
         self.opening.show(ui.ctx());
         #[cfg(not(target_arch = "wasm32"))]
         updates_ui::show(self, ui.ctx());

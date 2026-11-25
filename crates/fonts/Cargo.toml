@@ -8,6 +8,10 @@ license.workspace = true
 [lints]
 workspace = true
 
+[features]
+# The PPM build: the web build embeds every font of CRAFT_FONTS_DIR, not only the few of the upstream web build.
+ppm-host = []
+
 [dependencies]
 cadcraft-geom = { workspace = true }
 craft-dxf = { workspace = true }

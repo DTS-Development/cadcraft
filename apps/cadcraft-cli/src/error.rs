@@ -15,6 +15,8 @@ pub(crate) enum CliError {
     #[error(transparent)]
     Io(#[from] std::io::Error),
     #[error(transparent)]
+    Json(#[from] serde_json::Error),
+    #[error(transparent)]
     Run(#[from] RunError),
     #[error(transparent)]
     Output(#[from] OutputError),

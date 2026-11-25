@@ -1,0 +1,6154 @@
+{
+  "app": "cad",
+  "commands": [
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "-array",
+      "label": "Array",
+      "labelKo": "배열",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "-attedit",
+      "label": "Global",
+      "labelKo": "전체",
+      "location": [
+        "Modify",
+        "Object",
+        "Attribute",
+        "Global"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "-block",
+      "label": "Create Block",
+      "labelKo": "블록 작성",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "-dimstyle",
+      "label": "Dimension Style",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "-group",
+      "label": "Group Options",
+      "labelKo": "그룹 옵션",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "-linetype",
+      "label": "Linetype",
+      "labelKo": "선종류",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "-pan",
+      "label": "Pan",
+      "labelKo": "초점 이동",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "-plottermanager",
+      "label": "Plotter Manager",
+      "labelKo": "플로터 관리자",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "-units",
+      "label": "Units",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "-vports",
+      "label": "Viewports",
+      "labelKo": "뷰포트",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "-wblock",
+      "label": "Write Block",
+      "labelKo": "블록 쓰기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "-xref",
+      "label": "External References",
+      "labelKo": "외부 참조",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "3dorbit",
+      "label": "Orbit",
+      "labelKo": "궤도 회전",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "3dpoly",
+      "label": "3D Polyline",
+      "labelKo": "3D 폴리선",
+      "location": [
+        "Draw",
+        "3D Polyline"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ai_deselect",
+      "label": "Deselect All",
+      "labelKo": "모두 선택 해제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "aiobjectscaleadd",
+      "label": "Add Current Scale",
+      "labelKo": "현재 축척 추가",
+      "location": [
+        "Modify",
+        "Annotative Object Scale",
+        "Add Current Scale"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "aiobjectscaleremove",
+      "label": "Delete Current Scale",
+      "labelKo": "현재 축척 삭제",
+      "location": [
+        "Modify",
+        "Annotative Object Scale",
+        "Delete Current Scale"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "aliasedit",
+      "label": "Command Aliases",
+      "labelKo": "명령 별칭",
+      "location": [
+        "Tools",
+        "Customize",
+        "Edit Command Aliases (PGP)..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "align",
+      "label": "Align",
+      "labelKo": "정렬",
+      "location": [
+        "Modify",
+        "3D Operations",
+        "Align"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "angle.measure",
+      "label": "Angle",
+      "labelKo": "각도",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "Angle"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "annoreset",
+      "label": "Synchronize Multiple-scale Positions",
+      "labelKo": "여러 축척의 위치 동기화",
+      "location": [
+        "Modify",
+        "Annotative Object Scale",
+        "Synchronize Multiple-scale Positions"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "annoupdate",
+      "label": "Annotative Update",
+      "labelKo": "주석 업데이트",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "annovisible.all",
+      "label": "All Scales",
+      "labelKo": "모든 축척",
+      "location": [
+        "View",
+        "Show Annotative Objects",
+        "All Scales"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "annovisible.current",
+      "label": "Current Scale Only",
+      "labelKo": "현재 축척만",
+      "location": [
+        "View",
+        "Show Annotative Objects",
+        "Current Scale Only"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "annovisible.toggle",
+      "label": "Annotation Visibility",
+      "labelKo": "주석 표시",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "appload",
+      "label": "Load Application...",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "Load Application..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc",
+      "label": "Arc",
+      "labelKo": "호",
+      "location": [
+        "Draw",
+        "Arc",
+        "3 Points"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc.continue",
+      "label": "Continue",
+      "labelKo": "계속",
+      "location": [
+        "Draw",
+        "Arc",
+        "Continue"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc.csa",
+      "label": "Center, Start, Angle",
+      "labelKo": "중심, 시작점, 각도",
+      "location": [
+        "Draw",
+        "Arc",
+        "Center, Start, Angle"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc.cse",
+      "label": "Center, Start, End",
+      "labelKo": "중심, 시작점, 끝점",
+      "location": [
+        "Draw",
+        "Arc",
+        "Center, Start, End"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc.csl",
+      "label": "Center, Start, Length",
+      "labelKo": "중심, 시작점, 길이",
+      "location": [
+        "Draw",
+        "Arc",
+        "Center, Start, Length"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc.sca",
+      "label": "Start, Center, Angle",
+      "labelKo": "시작점, 중심, 각도",
+      "location": [
+        "Draw",
+        "Arc",
+        "Start, Center, Angle"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc.sce",
+      "label": "Start, Center, End",
+      "labelKo": "시작점, 중심, 끝점",
+      "location": [
+        "Draw",
+        "Arc",
+        "Start, Center, End"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc.scl",
+      "label": "Start, Center, Length",
+      "labelKo": "시작점, 중심, 길이",
+      "location": [
+        "Draw",
+        "Arc",
+        "Start, Center, Length"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc.sea",
+      "label": "Start, End, Angle",
+      "labelKo": "시작점, 끝점, 각도",
+      "location": [
+        "Draw",
+        "Arc",
+        "Start, End, Angle"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc.sed",
+      "label": "Start, End, Direction",
+      "labelKo": "시작점, 끝점, 방향",
+      "location": [
+        "Draw",
+        "Arc",
+        "Start, End, Direction"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arc.ser",
+      "label": "Start, End, Radius",
+      "labelKo": "시작점, 끝점, 반지름",
+      "location": [
+        "Draw",
+        "Arc",
+        "Start, End, Radius"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "area",
+      "label": "Area",
+      "labelKo": "면적",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "Area"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "array",
+      "label": "Array",
+      "labelKo": "배열",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arrayclose",
+      "label": "Close Array Editing",
+      "labelKo": "배열 편집 종료",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arrayedit",
+      "label": "Edit Array",
+      "labelKo": "배열 편집",
+      "location": [
+        "Modify",
+        "Object",
+        "Array"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arraypath",
+      "label": "Path Array",
+      "labelKo": "경로 배열",
+      "location": [
+        "Modify",
+        "Array",
+        "Path Array"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arraypolar",
+      "label": "Polar Array",
+      "labelKo": "원형 배열",
+      "location": [
+        "Modify",
+        "Array",
+        "Polar Array"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "arrayrect",
+      "label": "Rectangular Array",
+      "labelKo": "직사각형 배열",
+      "location": [
+        "Modify",
+        "Array",
+        "Rectangular Array"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "attach",
+      "label": "Attach",
+      "labelKo": "부착",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "attdef",
+      "label": "Define Attributes...",
+      "labelKo": "속성 정의...",
+      "location": [
+        "Draw",
+        "Block",
+        "Define Attributes..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "attdisp",
+      "label": "Attribute Display",
+      "labelKo": "속성 표시",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "attdisp.normal",
+      "label": "Normal",
+      "labelKo": "보통",
+      "location": [
+        "View",
+        "Attribute Display",
+        "Normal"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "attdisp.off",
+      "label": "Off",
+      "labelKo": "끄기",
+      "location": [
+        "View",
+        "Attribute Display",
+        "Off"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "attdisp.on",
+      "label": "On",
+      "labelKo": "켜기",
+      "location": [
+        "View",
+        "Attribute Display",
+        "On"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "attedit",
+      "label": "Single...",
+      "labelKo": "단일...",
+      "location": [
+        "Modify",
+        "Object",
+        "Attribute",
+        "Single..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "attsync",
+      "label": "Synchronize Attributes",
+      "labelKo": "속성 동기화",
+      "location": [
+        "Modify",
+        "Object",
+        "Attribute",
+        "Synchronize Attributes"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "audit",
+      "label": "Audit",
+      "labelKo": "검사",
+      "location": [
+        "File",
+        "Drawing Utilities",
+        "Audit"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "autoconstrain",
+      "label": "AutoConstrain",
+      "labelKo": "자동 구속",
+      "location": [
+        "Tools",
+        "Parametric",
+        "AutoConstrain"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "base",
+      "label": "Base",
+      "labelKo": "기준",
+      "location": [
+        "Draw",
+        "Block",
+        "Base"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "battman",
+      "label": "Block Attribute Manager...",
+      "labelKo": "블록 속성 관리자...",
+      "location": [
+        "Modify",
+        "Object",
+        "Attribute",
+        "Block Attribute Manager..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "bclose",
+      "label": "Close Block Editor",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "bedit",
+      "label": "Block Editor",
+      "labelKo": "블록 편집기",
+      "location": [
+        "Tools",
+        "Block Editor"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blend",
+      "label": "Blend",
+      "labelKo": "곡선 연결",
+      "location": [
+        "Modify",
+        "Blend"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "block",
+      "label": "Make...",
+      "labelKo": "만들기...",
+      "location": [
+        "Draw",
+        "Block",
+        "Make..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blocklibimport",
+      "label": "Import Library Block",
+      "labelKo": "라이브러리 블록 가져오기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blocklibraries",
+      "label": "Block Libraries",
+      "labelKo": "블록 라이브러리",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blocklibrary",
+      "label": "Block Library",
+      "labelKo": "블록 라이브러리",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blockreplace",
+      "label": "Replace Block...",
+      "labelKo": "블록 바꾸기...",
+      "location": [
+        "Tools",
+        "Additional Tools",
+        "Replace Block..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blocks.description",
+      "label": "Block Description...",
+      "labelKo": "블록 설명...",
+      "location": [
+        "Modify",
+        "Object",
+        "Block Description..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blocks.dynamic",
+      "label": "Dynamic Block Data",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blocks.list",
+      "label": "List Blocks",
+      "labelKo": "블록 목록",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blocks.reference",
+      "label": "Dynamic Block Reference",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blocks.reference.grip",
+      "label": "Drag Dynamic Grip",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blocks.reference.grips",
+      "label": "Dynamic Block Grips",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blocks.reference.set",
+      "label": "Set Dynamic Property",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "blockspalette",
+      "label": "Blocks Palette",
+      "labelKo": "블록 팔레트",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "boundary",
+      "label": "Boundary...",
+      "labelKo": "경계...",
+      "location": [
+        "Draw",
+        "Boundary..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "break",
+      "label": "Break",
+      "labelKo": "끊기",
+      "location": [
+        "Modify",
+        "Break"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "breakatpoint",
+      "label": "Break At Point",
+      "labelKo": "한 점에서 끊기",
+      "location": [
+        "Modify",
+        "Break At Point"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "breakline",
+      "label": "Break-line Symbol",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "Additional Tools",
+        "Break-line Symbol"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "bsave",
+      "label": "Save Block",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "bsaveas",
+      "label": "Save Block As",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "burst",
+      "label": "Explode Attributes to Text",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "Additional Tools",
+        "Explode Attributes to Text"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "cal",
+      "label": "QuickCalc",
+      "labelKo": "빠른 계산기",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "Quick"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "centerline",
+      "label": "Center Line",
+      "labelKo": "중심선",
+      "location": [
+        "Draw",
+        "Center Line"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "centermark",
+      "label": "Center Mark",
+      "labelKo": "중심 표식",
+      "location": [
+        "Draw",
+        "Center Mark"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "chamfer",
+      "label": "Chamfer",
+      "labelKo": "모따기",
+      "location": [
+        "Modify",
+        "Chamfer"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "change",
+      "label": "Change",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "chprop",
+      "label": "Change Properties",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "chspace",
+      "label": "Change Space",
+      "labelKo": "공간 변경",
+      "location": [
+        "Modify",
+        "Change Space"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "circle",
+      "label": "Circle",
+      "labelKo": "원",
+      "location": [
+        "Draw",
+        "Circle",
+        "Center, Radius"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "circle.2p",
+      "label": "2 Points",
+      "labelKo": "2점",
+      "location": [
+        "Draw",
+        "Circle",
+        "2 Points"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "circle.3p",
+      "label": "3 Points",
+      "labelKo": "3점",
+      "location": [
+        "Draw",
+        "Circle",
+        "3 Points"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "circle.cd",
+      "label": "Center, Diameter",
+      "labelKo": "중심, 지름",
+      "location": [
+        "Draw",
+        "Circle",
+        "Center, Diameter"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "circle.ttr",
+      "label": "Tan, Tan, Radius",
+      "labelKo": "접선, 접선, 반지름",
+      "location": [
+        "Draw",
+        "Circle",
+        "Tan, Tan, Radius"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "circle.ttt",
+      "label": "Tan, Tan, Tan",
+      "labelKo": "접선, 접선, 접선",
+      "location": [
+        "Draw",
+        "Circle",
+        "Tan, Tan, Tan"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "close",
+      "label": "Close",
+      "labelKo": "닫기",
+      "location": [
+        "File",
+        "Close"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "closeall",
+      "label": "Close All",
+      "labelKo": "모두 닫기",
+      "location": [
+        "File",
+        "Close All"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "color",
+      "label": "Color...",
+      "labelKo": "색상...",
+      "location": [
+        "Format",
+        "Color..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "compare",
+      "label": "Compare Drawings...",
+      "labelKo": "도면 비교...",
+      "location": [
+        "Tools",
+        "Compare Drawings..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "compare.next",
+      "label": "Next Change",
+      "labelKo": "다음 변경 사항",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "compare.previous",
+      "label": "Previous Change",
+      "labelKo": "이전 변경 사항",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "compareclose",
+      "label": "Close Comparison",
+      "labelKo": "비교 닫기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "compareexport",
+      "label": "Export Comparison",
+      "labelKo": "비교 내보내기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "constraintbar",
+      "label": "Constraint Bars",
+      "labelKo": "구속조건 막대",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Constraint Bars",
+        "Select Objects"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "constraintbar.hideall",
+      "label": "Hide All Constraint Bars",
+      "labelKo": "모든 구속조건 막대 숨기기",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Constraint Bars",
+        "Hide All"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "constraintbar.showall",
+      "label": "Show All Constraint Bars",
+      "labelKo": "모든 구속조건 막대 표시",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Constraint Bars",
+        "Show All"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "constraintinfer",
+      "label": "Infer Constraints",
+      "labelKo": "구속조건 추론",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "constraints.dof",
+      "label": "Degrees of Freedom",
+      "labelKo": "자유도",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "constraints.inspect",
+      "label": "Inspect Constraints",
+      "labelKo": "구속조건 검사",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "constraintsettings",
+      "label": "Constraint Settings",
+      "labelKo": "구속조건 설정",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Constraint Settings"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "copy",
+      "label": "Copy",
+      "labelKo": "복사",
+      "location": [
+        "Modify",
+        "Copy"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "copybase",
+      "label": "Copy with Base Point",
+      "labelKo": "기준점을 지정하여 복사",
+      "location": [
+        "Edit",
+        "Copy with Base Point"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "copyclip",
+      "label": "Copy",
+      "labelKo": "복사",
+      "location": [
+        "Edit",
+        "Copy"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "count",
+      "label": "Count",
+      "labelKo": "개수",
+      "location": [
+        "Tools",
+        "Count"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "countlist",
+      "label": "Count List",
+      "labelKo": "개수 목록",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "counttable",
+      "label": "Count Table",
+      "labelKo": "개수 표",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "cutbase",
+      "label": "Cut with Base Point",
+      "labelKo": "기준점을 지정하여 잘라내기",
+      "location": [
+        "Edit",
+        "Cut with Base Point"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "cutclip",
+      "label": "Cut",
+      "labelKo": "잘라내기",
+      "location": [
+        "Edit",
+        "Cut"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "dataextraction",
+      "label": "Data Extraction...",
+      "labelKo": "데이터 추출...",
+      "location": [
+        "Tools",
+        "Data Extraction..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "datalink",
+      "label": "Data Link...",
+      "labelKo": "데이터 링크...",
+      "location": [
+        "Insert",
+        "Data Link..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "datalinkupdate",
+      "label": "Update Data Links",
+      "labelKo": "데이터 링크 업데이트",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dcaligned",
+      "label": "Aligned",
+      "labelKo": "정렬",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Dimensional Constraints",
+        "Aligned"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dcangular",
+      "label": "Angular",
+      "labelKo": "각도",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Dimensional Constraints",
+        "Angular"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dcdiameter",
+      "label": "Diameter",
+      "labelKo": "지름",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Dimensional Constraints",
+        "Diameter"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dcdisplay",
+      "label": "Dynamic Dimensions",
+      "labelKo": "동적 치수",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Dynamic Dimensions",
+        "Select Objects"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dcdisplay.hideall",
+      "label": "Hide All Dynamic Dimensions",
+      "labelKo": "모든 동적 치수 숨기기",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Dynamic Dimensions",
+        "Hide All"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dcdisplay.showall",
+      "label": "Show All Dynamic Dimensions",
+      "labelKo": "모든 동적 치수 표시",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Dynamic Dimensions",
+        "Show All"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dchorizontal",
+      "label": "Horizontal",
+      "labelKo": "수평",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Dimensional Constraints",
+        "Horizontal"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dclinear",
+      "label": "Linear",
+      "labelKo": "선형",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dcradius",
+      "label": "Radius",
+      "labelKo": "반지름",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Dimensional Constraints",
+        "Radius"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dcvertical",
+      "label": "Vertical",
+      "labelKo": "수직",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Dimensional Constraints",
+        "Vertical"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ddptype",
+      "label": "Point Style...",
+      "labelKo": "점 스타일...",
+      "location": [
+        "Format",
+        "Point Style..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "delconstraint",
+      "label": "Delete Constraints",
+      "labelKo": "구속조건 삭제",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Delete Constraints"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dim",
+      "label": "Dimension",
+      "labelKo": "치수",
+      "location": [
+        "Dimension",
+        "Dimension"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimaligned",
+      "label": "Aligned",
+      "labelKo": "정렬",
+      "location": [
+        "Dimension",
+        "Aligned"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimangular",
+      "label": "Angular",
+      "labelKo": "각도",
+      "location": [
+        "Dimension",
+        "Angular"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimarc",
+      "label": "Arc Length",
+      "labelKo": "호 길이",
+      "location": [
+        "Dimension",
+        "Arc Length"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimbaseline",
+      "label": "Baseline",
+      "labelKo": "기준선",
+      "location": [
+        "Dimension",
+        "Baseline"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimbreak",
+      "label": "Dimension Break",
+      "labelKo": "치수 끊기",
+      "location": [
+        "Dimension",
+        "Dimension Break"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimconstraint",
+      "label": "Dimensional Constraint",
+      "labelKo": "치수 구속조건",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimcontinue",
+      "label": "Continue",
+      "labelKo": "계속",
+      "location": [
+        "Dimension",
+        "Continue"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimdiameter",
+      "label": "Diameter",
+      "labelKo": "지름",
+      "location": [
+        "Dimension",
+        "Diameter"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimdisassociate",
+      "label": "Disassociate Dimensions",
+      "labelKo": "치수 연관 해제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimedit",
+      "label": "Dimension Edit",
+      "labelKo": "치수 편집",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimedit.oblique",
+      "label": "Oblique",
+      "labelKo": "기울이기",
+      "location": [
+        "Dimension",
+        "Oblique"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "diminspect",
+      "label": "Inspection",
+      "labelKo": "검사",
+      "location": [
+        "Dimension",
+        "Inspection"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimjogged",
+      "label": "Jogged",
+      "labelKo": "꺾어진 반지름",
+      "location": [
+        "Dimension",
+        "Jogged"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimjogline",
+      "label": "Jogged Linear",
+      "labelKo": "꺾어진 선형",
+      "location": [
+        "Dimension",
+        "Jogged Linear"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimlinear",
+      "label": "Linear",
+      "labelKo": "선형",
+      "location": [
+        "Dimension",
+        "Linear"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimordinate",
+      "label": "Ordinate",
+      "labelKo": "좌표",
+      "location": [
+        "Dimension",
+        "Ordinate"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimoverride",
+      "label": "Override",
+      "labelKo": "재지정",
+      "location": [
+        "Dimension",
+        "Override"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimoverride.clear",
+      "label": "Remove Style Overrides",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimradius",
+      "label": "Radius",
+      "labelKo": "반지름",
+      "location": [
+        "Dimension",
+        "Radius"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimreassociate",
+      "label": "Reassociate Dimensions",
+      "labelKo": "치수 재연관",
+      "location": [
+        "Dimension",
+        "Reassociate Dimensions"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimspace",
+      "label": "Dimension Space",
+      "labelKo": "치수 간격",
+      "location": [
+        "Dimension",
+        "Dimension Space"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimstyle",
+      "label": "Dimension Style...",
+      "labelKo": "치수 스타일...",
+      "location": [
+        "Format",
+        "Dimension Style..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimstyle.current",
+      "label": "Set Current Dimension Style",
+      "labelKo": "현재 치수 스타일 설정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimstyle.delete",
+      "label": "Delete Dimension Style",
+      "labelKo": "치수 스타일 삭제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimstyle.dimension",
+      "label": "Dimension Style...",
+      "labelKo": "치수 스타일...",
+      "location": [
+        "Dimension",
+        "Dimension Style..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimstyle.list",
+      "label": "List Dimension Styles",
+      "labelKo": "치수 스타일 목록",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimstyle.override",
+      "label": "Dimension Style Override",
+      "labelKo": "치수 스타일 재지정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimstyle.overrides",
+      "label": "Dimension Style Overrides",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimstyle.rename",
+      "label": "Rename Dimension Style",
+      "labelKo": "치수 스타일 이름 바꾸기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimstyle.saveas",
+      "label": "Save as New Style...",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimstyle.update",
+      "label": "Update",
+      "labelKo": "업데이트",
+      "location": [
+        "Dimension",
+        "Update"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimtedit",
+      "label": "Dimension Text Edit",
+      "labelKo": "치수 문자 편집",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimtedit.angle",
+      "label": "Angle",
+      "labelKo": "각도",
+      "location": [
+        "Dimension",
+        "Align Text",
+        "Angle"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimtedit.center",
+      "label": "Center",
+      "labelKo": "중심",
+      "location": [
+        "Dimension",
+        "Align Text",
+        "Center"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimtedit.home",
+      "label": "Home",
+      "labelKo": "홈",
+      "location": [
+        "Dimension",
+        "Align Text",
+        "Home"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimtedit.left",
+      "label": "Left",
+      "labelKo": "왼쪽",
+      "location": [
+        "Dimension",
+        "Align Text",
+        "Left"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dimtedit.right",
+      "label": "Right",
+      "labelKo": "오른쪽",
+      "location": [
+        "Dimension",
+        "Align Text",
+        "Right"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dist",
+      "label": "Distance",
+      "labelKo": "거리",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "Distance"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "divide",
+      "label": "Divide",
+      "labelKo": "등분할",
+      "location": [
+        "Draw",
+        "Point",
+        "Divide"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "document.bytes",
+      "label": "Drawing as bytes",
+      "labelKo": "도면 바이트 데이터",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "document.switch",
+      "label": "Switch Drawing",
+      "labelKo": "도면 전환",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "donut",
+      "label": "Donut",
+      "labelKo": "도넛",
+      "location": [
+        "Draw",
+        "Donut"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "drawing.inspect",
+      "label": "Inspect Drawing",
+      "labelKo": "도면 검사",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "drawingrecovery",
+      "label": "Drawing Recovery Manager...",
+      "labelKo": "도면 복구 관리자...",
+      "location": [
+        "File",
+        "Drawing Utilities",
+        "Drawing Recovery Manager..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "draworder",
+      "label": "Draw Order",
+      "labelKo": "그리기 순서",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "draworder.above",
+      "label": "Bring Above Objects",
+      "labelKo": "객체 위로 가져오기",
+      "location": [
+        "Tools",
+        "Draw Order",
+        "Bring Above Objects"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "draworder.back",
+      "label": "Send to Back",
+      "labelKo": "맨 뒤로 보내기",
+      "location": [
+        "Tools",
+        "Draw Order",
+        "Send to Back"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "draworder.front",
+      "label": "Bring to Front",
+      "labelKo": "맨 앞으로 가져오기",
+      "location": [
+        "Tools",
+        "Draw Order",
+        "Bring to Front"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "draworder.under",
+      "label": "Send Under Objects",
+      "labelKo": "객체 아래로 보내기",
+      "location": [
+        "Tools",
+        "Draw Order",
+        "Send Under Objects"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dsettings",
+      "label": "Drafting Settings...",
+      "labelKo": "제도 설정...",
+      "location": [
+        "Tools",
+        "Drafting Settings..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dview",
+      "label": "DView",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "dynmode",
+      "label": "Dynamic Input",
+      "labelKo": "동적 입력",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "eattext",
+      "label": "Data Extraction...",
+      "labelKo": "데이터 추출...",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ellipse",
+      "label": "Ellipse",
+      "labelKo": "타원",
+      "location": [
+        "Draw",
+        "Ellipse",
+        "Center"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ellipse.arc",
+      "label": "Elliptical Arc",
+      "labelKo": "타원 호",
+      "location": [
+        "Draw",
+        "Ellipse",
+        "Arc"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ellipse.axis",
+      "label": "Axis, End",
+      "labelKo": "축, 끝점",
+      "location": [
+        "Draw",
+        "Ellipse",
+        "Axis, End"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "entities",
+      "label": "Query Entities",
+      "labelKo": "객체 조회",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "erase",
+      "label": "Erase",
+      "labelKo": "지우기",
+      "location": [
+        "Modify",
+        "Erase"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "erase.selection",
+      "label": "Clear",
+      "labelKo": "지우기",
+      "location": [
+        "Edit",
+        "Clear"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "explode",
+      "label": "Explode",
+      "labelKo": "분해",
+      "location": [
+        "Modify",
+        "Explode"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "export",
+      "label": "Export...",
+      "labelKo": "내보내기...",
+      "location": [
+        "File",
+        "Export..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "exportpdf",
+      "label": "Export to PDF...",
+      "labelKo": "PDF로 내보내기...",
+      "location": [
+        "File",
+        "Export to PDF..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "extend",
+      "label": "Extend",
+      "labelKo": "연장",
+      "location": [
+        "Modify",
+        "Extend"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "fillet",
+      "label": "Fillet",
+      "labelKo": "모깎기",
+      "location": [
+        "Modify",
+        "Fillet"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "find",
+      "label": "Find...",
+      "labelKo": "찾기...",
+      "location": [
+        "Edit",
+        "Find..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "flatten",
+      "label": "Flatten Objects",
+      "labelKo": "객체 평면화",
+      "location": [
+        "Modify",
+        "Flatten Objects"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gccoincident",
+      "label": "Coincident",
+      "labelKo": "일치",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Coincident"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gccollinear",
+      "label": "Collinear",
+      "labelKo": "동일 선상",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Collinear"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gcconcentric",
+      "label": "Concentric",
+      "labelKo": "동심",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Concentric"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gcequal",
+      "label": "Equal",
+      "labelKo": "같음",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Equal"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gcfix",
+      "label": "Fix",
+      "labelKo": "고정",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Fix"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gchorizontal",
+      "label": "Horizontal",
+      "labelKo": "수평",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Horizontal"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gcparallel",
+      "label": "Parallel",
+      "labelKo": "평행",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Parallel"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gcperpendicular",
+      "label": "Perpendicular",
+      "labelKo": "수직",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Perpendicular"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gcsmooth",
+      "label": "Smooth",
+      "labelKo": "매끄럽게",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Smooth"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gcsymmetric",
+      "label": "Symmetric",
+      "labelKo": "대칭",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Symmetric"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gctangent",
+      "label": "Tangent",
+      "labelKo": "접선",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Tangent"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gcvertical",
+      "label": "Vertical",
+      "labelKo": "수직",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Geometric Constraints",
+        "Vertical"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "geomconstraint",
+      "label": "Geometric Constraint",
+      "labelKo": "기하 구속조건",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "getvar",
+      "label": "Get Variable",
+      "labelKo": "변수 조회",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "gradient",
+      "label": "Gradient...",
+      "labelKo": "그라데이션...",
+      "location": [
+        "Draw",
+        "Gradient..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "grid",
+      "label": "Grid Display",
+      "labelKo": "그리드 표시",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "grip",
+      "label": "Grip Edit",
+      "labelKo": "그립 편집",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "grip.mirror",
+      "label": "Grip Mirror",
+      "labelKo": "그립 대칭 복사",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "grip.move",
+      "label": "Grip Stretch",
+      "labelKo": "그립 신축",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "grip.option",
+      "label": "Grip Option",
+      "labelKo": "그립 옵션",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "grip.rotate",
+      "label": "Grip Rotate",
+      "labelKo": "그립 회전",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "grip.scale",
+      "label": "Grip Scale",
+      "labelKo": "그립 축척",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "grip.stretch",
+      "label": "Grip Stretch",
+      "labelKo": "그립 신축",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "group",
+      "label": "Group",
+      "labelKo": "그룹",
+      "location": [
+        "Tools",
+        "Group"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "groupedit",
+      "label": "Group Edit",
+      "labelKo": "그룹 편집",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "groups.list",
+      "label": "List Groups",
+      "labelKo": "그룹 목록",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "hatch",
+      "label": "Hatch...",
+      "labelKo": "해치...",
+      "location": [
+        "Draw",
+        "Hatch..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "hatch.patterns",
+      "label": "Hatch Patterns",
+      "labelKo": "해치 패턴",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "hatchedit",
+      "label": "Hatch Edit",
+      "labelKo": "해치 편집",
+      "location": [
+        "Modify",
+        "Object",
+        "Hatch..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "hatchgenerateboundary",
+      "label": "Generate Boundary",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "hatchpick",
+      "label": "Hatch Pick",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "hatchtoback",
+      "label": "Send Hatches to Back",
+      "labelKo": "해치를 맨 뒤로 보내기",
+      "location": [
+        "Tools",
+        "Draw Order",
+        "Send Hatches to Back"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "helix",
+      "label": "Helix",
+      "labelKo": "나선",
+      "location": [
+        "Draw",
+        "Helix"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "hideobjects",
+      "label": "Hide Objects",
+      "labelKo": "객체 숨기기",
+      "location": [
+        "Tools",
+        "Isolate",
+        "Hide Objects"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "id",
+      "label": "ID Point",
+      "labelKo": "점 좌표 조회",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "ID Point"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "image",
+      "label": "Raster Images",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "imageattach",
+      "label": "Raster Image Reference...",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "import",
+      "label": "Import...",
+      "labelKo": "가져오기...",
+      "location": [
+        "File",
+        "Import..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "insert",
+      "label": "Block...",
+      "labelKo": "블록...",
+      "location": [
+        "Insert",
+        "Block..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "intersect",
+      "label": "Intersect",
+      "labelKo": "교집합",
+      "location": [
+        "Modify",
+        "Solid Editing",
+        "Intersect"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "isodraft",
+      "label": "Isometric Drafting",
+      "labelKo": "등각 제도",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "isolateobjects",
+      "label": "Isolate Objects",
+      "labelKo": "객체 분리",
+      "location": [
+        "Tools",
+        "Isolate",
+        "Isolate Objects"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "isoplane",
+      "label": "Isometric Plane",
+      "labelKo": "등각 평면",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "join",
+      "label": "Join",
+      "labelKo": "결합",
+      "location": [
+        "Modify",
+        "Join"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "laycur",
+      "label": "Change to Current Layer",
+      "labelKo": "현재 도면층으로 변경",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Change to Current Layer"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "laydel",
+      "label": "Layer Delete",
+      "labelKo": "도면층 삭제",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Layer Delete"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layer",
+      "label": "Layers",
+      "labelKo": "도면층",
+      "location": [
+        "Format",
+        "Layers"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layer.current",
+      "label": "Make Current",
+      "labelKo": "현재로 설정",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Make Current"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layer.delete",
+      "label": "Delete Layer",
+      "labelKo": "도면층 삭제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layer.new",
+      "label": "New Layer",
+      "labelKo": "새 도면층",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layer.set",
+      "label": "Set Layer Properties",
+      "labelKo": "도면층 특성 설정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layerp",
+      "label": "Previous Layer",
+      "labelKo": "이전 도면층",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Previous Layer"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layerstate.delete",
+      "label": "Delete Layer State",
+      "labelKo": "도면층 상태 삭제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layerstate.list",
+      "label": "List Layer States",
+      "labelKo": "도면층 상태 목록",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layerstate.rename",
+      "label": "Rename Layer State",
+      "labelKo": "도면층 상태 이름 바꾸기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layerstate.restore",
+      "label": "Restore Layer State",
+      "labelKo": "도면층 상태 복원",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layerstate.save",
+      "label": "Save Layer State",
+      "labelKo": "도면층 상태 저장",
+      "location": [
+        "Format",
+        "Layer States Manager..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layfrz",
+      "label": "Freeze Layer",
+      "labelKo": "도면층 동결",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Freeze Layer"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layiso",
+      "label": "Isolate Layer",
+      "labelKo": "도면층 분리",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Isolate Layer"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "laylck",
+      "label": "Lock Layer",
+      "labelKo": "도면층 잠금",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Lock Layer"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "laymch",
+      "label": "Layer Match",
+      "labelKo": "도면층 일치",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Layer Match"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "laymcur",
+      "label": "Make Object's Layer Current",
+      "labelKo": "객체의 도면층을 현재로 설정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "laymrg",
+      "label": "Layer Merge",
+      "labelKo": "도면층 병합",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Layer Merge"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layoff",
+      "label": "Layer Off",
+      "labelKo": "도면층 끄기",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Layer Off"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layon",
+      "label": "Turn All Layers On",
+      "labelKo": "모든 도면층 켜기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layout",
+      "label": "Layout",
+      "labelKo": "배치",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layout.copy",
+      "label": "Copy Layout",
+      "labelKo": "배치 복사",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layout.delete",
+      "label": "Delete Layout",
+      "labelKo": "배치 삭제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layout.list",
+      "label": "List Layouts",
+      "labelKo": "배치 목록",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layout.new",
+      "label": "New Layout",
+      "labelKo": "새 배치",
+      "location": [
+        "Insert",
+        "Layout",
+        "New Layout"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layout.rename",
+      "label": "Rename Layout",
+      "labelKo": "배치 이름 바꾸기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "layout.saveas",
+      "label": "Save Layout as Template",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layout.set",
+      "label": "Switch Layout",
+      "labelKo": "배치 전환",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "laythw",
+      "label": "Thaw All Layers",
+      "labelKo": "모든 도면층 동결 해제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layulk",
+      "label": "Unlock Layer",
+      "labelKo": "도면층 잠금 해제",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Unlock Layer"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "layuniso",
+      "label": "Unisolate Layer",
+      "labelKo": "도면층 분리 해제",
+      "location": [
+        "Format",
+        "Layer Tools",
+        "Unisolate Layer"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "leader",
+      "label": "Leader",
+      "labelKo": "지시선",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "lengthen",
+      "label": "Lengthen",
+      "labelKo": "길이 조정",
+      "location": [
+        "Modify",
+        "Lengthen"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "limits",
+      "label": "Drawing Limits",
+      "labelKo": "도면 한계",
+      "location": [
+        "Format",
+        "Drawing Limits"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "line",
+      "label": "Line",
+      "labelKo": "선",
+      "location": [
+        "Draw",
+        "Line"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "linetype",
+      "label": "Linetype...",
+      "labelKo": "선종류...",
+      "location": [
+        "Format",
+        "Linetype..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "lisp",
+      "label": "Evaluate LISP",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "list",
+      "label": "List",
+      "labelKo": "목록",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "List"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "loops",
+      "label": "Implied Loops",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ltscale",
+      "label": "Linetype Scale",
+      "labelKo": "선종류 축척",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "lwdisplay",
+      "label": "Show/Hide Lineweight",
+      "labelKo": "선가중치 표시/숨기기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "lweight",
+      "label": "Lineweight...",
+      "labelKo": "선가중치...",
+      "location": [
+        "Format",
+        "Lineweight..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "massprop",
+      "label": "Region/Mass Properties",
+      "labelKo": "영역/질량 특성",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "Region/Mass Properties"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "matchprop",
+      "label": "Match Properties",
+      "labelKo": "특성 일치",
+      "location": [
+        "Modify",
+        "Match Properties"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "measure",
+      "label": "Measure",
+      "labelKo": "길이 분할",
+      "location": [
+        "Draw",
+        "Point",
+        "Measure"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "measuregeom",
+      "label": "Measure Geometry",
+      "labelKo": "형상 측정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "menubar",
+      "label": "Menu Bar",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "minsert",
+      "label": "Multiple Insert",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mirror",
+      "label": "Mirror",
+      "labelKo": "대칭 복사",
+      "location": [
+        "Modify",
+        "Mirror"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mleader",
+      "label": "Multileader",
+      "labelKo": "다중 지시선",
+      "location": [
+        "Dimension",
+        "Multileader"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mleaderalign",
+      "label": "Align Multileaders",
+      "labelKo": null,
+      "location": [
+        "Modify",
+        "Object",
+        "Multileader",
+        "Align"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mleadercollect",
+      "label": "Collect Multileaders",
+      "labelKo": null,
+      "location": [
+        "Modify",
+        "Object",
+        "Multileader",
+        "Collect"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mleaderedit",
+      "label": "Edit Multileader",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mleaderedit.add",
+      "label": "Add Leader",
+      "labelKo": "지시선 추가",
+      "location": [
+        "Modify",
+        "Object",
+        "Multileader",
+        "Add Leader"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mleaderedit.remove",
+      "label": "Remove Leader",
+      "labelKo": "지시선 제거",
+      "location": [
+        "Modify",
+        "Object",
+        "Multileader",
+        "Remove Leader"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mleaderstyle",
+      "label": "Multileader Style...",
+      "labelKo": "다중 지시선 스타일...",
+      "location": [
+        "Format",
+        "Multileader Style..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mledit",
+      "label": "Multiline...",
+      "labelKo": "다중선...",
+      "location": [
+        "Modify",
+        "Object",
+        "Multiline..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mline",
+      "label": "Multiline",
+      "labelKo": "다중선",
+      "location": [
+        "Draw",
+        "Multiline"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mlstyle",
+      "label": "Multiline Style...",
+      "labelKo": "다중선 스타일...",
+      "location": [
+        "Format",
+        "Multiline Style..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mocoro",
+      "label": "Move/Copy/Rotate",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "Additional Tools",
+        "Move/Copy/Rotate"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "move",
+      "label": "Move",
+      "labelKo": "이동",
+      "location": [
+        "Modify",
+        "Move"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mredo",
+      "label": "Redo",
+      "labelKo": "다시 실행",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mspace",
+      "label": "Model Space (in viewport)",
+      "labelKo": "모형 공간(뷰포트 내부)",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mtext",
+      "label": "Multiline Text",
+      "labelKo": "여러 줄 문자",
+      "location": [
+        "Draw",
+        "Text",
+        "Multiline Text..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mview",
+      "label": "Viewports",
+      "labelKo": "뷰포트",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "mview.polygonal",
+      "label": "Polygonal Viewport",
+      "labelKo": "다각형 뷰포트",
+      "location": [
+        "View",
+        "Viewports",
+        "Polygonal Viewport"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ncopy",
+      "label": "Copy Nested Objects",
+      "labelKo": "내포된 객체 복사",
+      "location": [
+        "Modify",
+        "Copy Nested Objects"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "new",
+      "label": "New Drawing...",
+      "labelKo": "새 도면...",
+      "location": [
+        "File",
+        "New Drawing..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "objectscale",
+      "label": "Add/Delete Scales...",
+      "labelKo": "축척 추가/삭제...",
+      "location": [
+        "Modify",
+        "Annotative Object Scale",
+        "Add/Delete Scales..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "offset",
+      "label": "Offset",
+      "labelKo": "간격띄우기",
+      "location": [
+        "Modify",
+        "Offset"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "oops",
+      "label": "Oops",
+      "labelKo": "지운 객체 복원",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "open",
+      "label": "Open...",
+      "labelKo": "열기...",
+      "location": [
+        "File",
+        "Open..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "options",
+      "label": "Options...",
+      "labelKo": "옵션...",
+      "location": [
+        "Tools",
+        "Options..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ortho",
+      "label": "Ortho Mode",
+      "labelKo": "직교 모드",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "osnap",
+      "label": "Object Snap",
+      "labelKo": "객체 스냅",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "otrack",
+      "label": "Object Snap Tracking",
+      "labelKo": "객체 스냅 추적",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "overkill",
+      "label": "Delete Duplicate Objects",
+      "labelKo": "중복 객체 삭제",
+      "location": [
+        "Modify",
+        "Delete Duplicate Objects"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pagesetup",
+      "label": "Page Setup Manager...",
+      "labelKo": "페이지 설정 관리자...",
+      "location": [
+        "File",
+        "Page Setup Manager..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pan",
+      "label": "Pan",
+      "labelKo": "초점 이동",
+      "location": [
+        "View",
+        "Pan",
+        "Realtime"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pan.down",
+      "label": "Pan Down",
+      "labelKo": "아래로 초점 이동",
+      "location": [
+        "View",
+        "Pan",
+        "Down"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pan.left",
+      "label": "Pan Left",
+      "labelKo": "왼쪽으로 초점 이동",
+      "location": [
+        "View",
+        "Pan",
+        "Left"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pan.right",
+      "label": "Pan Right",
+      "labelKo": "오른쪽으로 초점 이동",
+      "location": [
+        "View",
+        "Pan",
+        "Right"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pan.up",
+      "label": "Pan Up",
+      "labelKo": "위로 초점 이동",
+      "location": [
+        "View",
+        "Pan",
+        "Up"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "parameters",
+      "label": "Parameters Manager",
+      "labelKo": "매개변수 관리자",
+      "location": [
+        "Tools",
+        "Parametric",
+        "Parameters Manager"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pasteblock",
+      "label": "Paste as Block",
+      "labelKo": "블록으로 붙여넣기",
+      "location": [
+        "Edit",
+        "Paste as Block"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pasteclip",
+      "label": "Paste",
+      "labelKo": "붙여넣기",
+      "location": [
+        "Edit",
+        "Paste"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pasteorig",
+      "label": "Paste to Original Coordinates",
+      "labelKo": "원래 좌표로 붙여넣기",
+      "location": [
+        "Edit",
+        "Paste to Original Coordinates"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "pdfbook",
+      "label": "Sheet Books to PDF...",
+      "labelKo": null,
+      "location": [
+        "File",
+        "Sheet Books to PDF..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pedit",
+      "label": "Polyline",
+      "labelKo": "폴리선",
+      "location": [
+        "Modify",
+        "Object",
+        "Polyline"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pickstyle",
+      "label": "Group Selection",
+      "labelKo": "그룹 선택",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pline",
+      "label": "Polyline",
+      "labelKo": "폴리선",
+      "location": [
+        "Draw",
+        "Polyline"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "plot",
+      "label": "Print...",
+      "labelKo": "인쇄...",
+      "location": [
+        "File",
+        "Print..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "plotstyle",
+      "label": "Plot Style...",
+      "labelKo": "플롯 스타일...",
+      "location": [
+        "Format",
+        "Plot Style..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "plottermanager",
+      "label": "Plotter Manager...",
+      "labelKo": "플로터 관리자...",
+      "location": [
+        "File",
+        "Plotter Manager..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "plotwindow",
+      "label": "Plot Window",
+      "labelKo": "플롯 창",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "point",
+      "label": "Point",
+      "labelKo": "점",
+      "location": [
+        "Draw",
+        "Point",
+        "Single Point"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "point.multiple",
+      "label": "Multiple Point",
+      "labelKo": "여러 점",
+      "location": [
+        "Draw",
+        "Point",
+        "Multiple Point"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "polar",
+      "label": "Polar Tracking",
+      "labelKo": "극좌표 추적",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "polygon",
+      "label": "Polygon",
+      "labelKo": "다각형",
+      "location": [
+        "Draw",
+        "Polygon"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "preview",
+      "label": "Plot Preview",
+      "labelKo": "플롯 미리보기",
+      "location": [
+        "File",
+        "Plot Preview"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "properties",
+      "label": "Properties",
+      "labelKo": "특성",
+      "location": [
+        "Modify",
+        "Properties"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "properties.describe",
+      "label": "Describe Properties",
+      "labelKo": "특성 설명",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "properties.set",
+      "label": "Set Properties",
+      "labelKo": "특성 설정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "pspace",
+      "label": "Paper Space",
+      "labelKo": "도면 공간",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "publish",
+      "label": "Batch Publish...",
+      "labelKo": "일괄 게시...",
+      "location": [
+        "File",
+        "Batch Publish..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "purge",
+      "label": "Purge",
+      "labelKo": "소거",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "qdim",
+      "label": "Quick Dimension",
+      "labelKo": "빠른 치수",
+      "location": [
+        "Dimension",
+        "Quick Dimension"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "qpmode",
+      "label": "Quick Properties",
+      "labelKo": "빠른 특성",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "qsave",
+      "label": "Save",
+      "labelKo": "저장",
+      "location": [
+        "File",
+        "Save"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "qselect",
+      "label": "Quick Select...",
+      "labelKo": "빠른 선택...",
+      "location": [
+        "Edit",
+        "Quick Select..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "qselect.info",
+      "label": "Quick Select Properties",
+      "labelKo": "빠른 선택 특성",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "quickcalc.pick",
+      "label": "QuickCalc Pick",
+      "labelKo": "빠른 계산기 점 지정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "radius.measure",
+      "label": "Radius",
+      "labelKo": "반지름",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "Radius"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ray",
+      "label": "Ray",
+      "labelKo": "반직선",
+      "location": [
+        "Draw",
+        "Ray"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "recover",
+      "label": "Recover...",
+      "labelKo": "복구...",
+      "location": [
+        "File",
+        "Drawing Utilities",
+        "Recover..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "rectang",
+      "label": "Rectangle",
+      "labelKo": "직사각형",
+      "location": [
+        "Draw",
+        "Rectangle"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "redo",
+      "label": "Redo",
+      "labelKo": "다시 실행",
+      "location": [
+        "Edit",
+        "Redo"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "redraw",
+      "label": "Redraw",
+      "labelKo": "다시 그리기",
+      "location": [
+        "View",
+        "Redraw"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "refclose",
+      "label": "Save Reference Edits",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "Xref and Block In-place Editing",
+        "Save Reference Edits"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "refedit",
+      "label": "Edit Reference In-Place",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "Xref and Block In-place Editing",
+        "Edit Reference In-Place"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "refset",
+      "label": "Working Set",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "Xref and Block In-place Editing",
+        "Add to Working Set"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "regen",
+      "label": "Regen",
+      "labelKo": "재생성",
+      "location": [
+        "View",
+        "Regen"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "regenall",
+      "label": "Regen All",
+      "labelKo": "모두 재생성",
+      "location": [
+        "View",
+        "Regen All"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "region",
+      "label": "Region",
+      "labelKo": "영역",
+      "location": [
+        "Draw",
+        "Region"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "reinit",
+      "label": "Reinitialize",
+      "labelKo": "다시 초기화",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "rename",
+      "label": "Rename...",
+      "labelKo": "이름 바꾸기...",
+      "location": [
+        "Format",
+        "Rename..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "revcloud",
+      "label": "Rectangular",
+      "labelKo": "직사각형",
+      "location": [
+        "Draw",
+        "Revision Cloud",
+        "Rectangular"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "revcloud.freehand",
+      "label": "Freehand",
+      "labelKo": "자유곡선",
+      "location": [
+        "Draw",
+        "Revision Cloud",
+        "Freehand"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "revcloud.polygonal",
+      "label": "Polygonal",
+      "labelKo": "다각형",
+      "location": [
+        "Draw",
+        "Revision Cloud",
+        "Polygonal"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "reverse",
+      "label": "Reverse",
+      "labelKo": "방향 반전",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "rotate",
+      "label": "Rotate",
+      "labelKo": "회전",
+      "location": [
+        "Modify",
+        "Rotate"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "saveas",
+      "label": "Save As...",
+      "labelKo": "다른 이름으로 저장...",
+      "location": [
+        "File",
+        "Save As..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "scale",
+      "label": "Scale",
+      "labelKo": "축척",
+      "location": [
+        "Modify",
+        "Scale"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "scalelistedit",
+      "label": "Scale List...",
+      "labelKo": "축척 목록...",
+      "location": [
+        "Format",
+        "Scale List..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "script",
+      "label": "Run Script...",
+      "labelKo": "스크립트 실행...",
+      "location": [
+        "Tools",
+        "Run Script..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "select",
+      "label": "Select",
+      "labelKo": "선택",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "selectall",
+      "label": "Select All",
+      "labelKo": "모두 선택",
+      "location": [
+        "Edit",
+        "Select All"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "selectioncycling",
+      "label": "Selection Cycling",
+      "labelKo": "선택 순환",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "selectsimilar",
+      "label": "Select Similar",
+      "labelKo": "유사 객체 선택",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "setvar",
+      "label": "Set Variable",
+      "labelKo": "변수 설정",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "Set Variable"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "shapes",
+      "label": "Analyze Shapes",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "share",
+      "label": "Share",
+      "labelKo": "공유",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "snap",
+      "label": "Snap Mode",
+      "labelKo": "스냅 모드",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "solid",
+      "label": "2D Solid",
+      "labelKo": "2D 솔리드",
+      "location": [
+        "Draw",
+        "2D Solid"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "spline",
+      "label": "Spline",
+      "labelKo": "스플라인",
+      "location": [
+        "Draw",
+        "Spline",
+        "Fit Points"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "spline.cv",
+      "label": "Control Vertices",
+      "labelKo": "조정 정점",
+      "location": [
+        "Draw",
+        "Spline",
+        "Control Vertices"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "splinedit",
+      "label": "Spline",
+      "labelKo": "스플라인",
+      "location": [
+        "Modify",
+        "Object",
+        "Spline"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "status",
+      "label": "Status",
+      "labelKo": "상태",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "Status"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "stretch",
+      "label": "Stretch",
+      "labelKo": "신축",
+      "location": [
+        "Modify",
+        "Stretch"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "style",
+      "label": "Text Style...",
+      "labelKo": "문자 스타일...",
+      "location": [
+        "Format",
+        "Text Style..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "style.current",
+      "label": "Set Current Text Style",
+      "labelKo": "현재 문자 스타일 설정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "style.delete",
+      "label": "Delete Text Style",
+      "labelKo": "문자 스타일 삭제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "style.list",
+      "label": "List Text Styles",
+      "labelKo": "문자 스타일 목록",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "style.rename",
+      "label": "Rename Text Style",
+      "labelKo": "문자 스타일 이름 바꾸기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "stylesmanager",
+      "label": "Plot Style Manager...",
+      "labelKo": "플롯 스타일 관리자...",
+      "location": [
+        "File",
+        "Plot Styles..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "subtract",
+      "label": "Subtract",
+      "labelKo": "차집합",
+      "location": [
+        "Modify",
+        "Solid Editing",
+        "Subtract"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "sysvars",
+      "label": "List System Variables",
+      "labelKo": "시스템 변수 목록",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table",
+      "label": "Table...",
+      "labelKo": "표...",
+      "location": [
+        "Draw",
+        "Table..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.break",
+      "label": "Table Breaks",
+      "labelKo": "표 분할",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.cellstyle",
+      "label": "Set Table Cell Style",
+      "labelKo": "표 셀 스타일 설정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.deletecol",
+      "label": "Delete Column",
+      "labelKo": "열 삭제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.deleterow",
+      "label": "Delete Row",
+      "labelKo": "행 삭제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.formula",
+      "label": "Insert Table Formula",
+      "labelKo": "표 수식 삽입",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.insertcol",
+      "label": "Insert Column",
+      "labelKo": "열 삽입",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.insertrow",
+      "label": "Insert Row",
+      "labelKo": "행 삽입",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.merge",
+      "label": "Merge Cells",
+      "labelKo": "셀 병합",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.recalc",
+      "label": "Recalculate Table Formulas",
+      "labelKo": "표 수식 다시 계산",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.set",
+      "label": "Set Table Cell",
+      "labelKo": "표 셀 설정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "table.unmerge",
+      "label": "Unmerge Cells",
+      "labelKo": "셀 병합 해제",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "tabledit",
+      "label": "Edit Table Cell",
+      "labelKo": "표 셀 편집",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "tableexport",
+      "label": "Export Table",
+      "labelKo": "표 내보내기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "tablestyle",
+      "label": "Table Style...",
+      "labelKo": "표 스타일...",
+      "location": [
+        "Format",
+        "Table Style..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "tablestyle.cellstyle",
+      "label": "Table Cell Style",
+      "labelKo": "표 셀 스타일",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "text",
+      "label": "Single Line Text",
+      "labelKo": "한 줄 문자",
+      "location": [
+        "Draw",
+        "Text",
+        "Single Line Text"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "textedit",
+      "label": "Edit Text...",
+      "labelKo": "문자 편집...",
+      "location": [
+        "Modify",
+        "Object",
+        "Edit Text..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "texts",
+      "label": "Query Texts",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "texttofront",
+      "label": "Bring Annotations to Front",
+      "labelKo": "주석을 맨 앞으로 가져오기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "texttofront.all",
+      "label": "All Annotation Objects",
+      "labelKo": "모든 주석 객체",
+      "location": [
+        "Tools",
+        "Draw Order",
+        "Bring Annotations to Front",
+        "All Annotation Objects"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "texttofront.dimensions",
+      "label": "Dimension Objects Only",
+      "labelKo": "치수 객체만",
+      "location": [
+        "Tools",
+        "Draw Order",
+        "Bring Annotations to Front",
+        "Dimension Objects Only"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "texttofront.leaders",
+      "label": "Leaders Only",
+      "labelKo": "지시선만",
+      "location": [
+        "Tools",
+        "Draw Order",
+        "Bring Annotations to Front",
+        "Leaders Only"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "texttofront.text",
+      "label": "Text Objects Only",
+      "labelKo": "문자 객체만",
+      "location": [
+        "Tools",
+        "Draw Order",
+        "Bring Annotations to Front",
+        "Text Objects Only"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "thickness",
+      "label": "Thickness",
+      "labelKo": "두께",
+      "location": [
+        "Format",
+        "Thickness"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "time",
+      "label": "Time",
+      "labelKo": "시간",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "Time"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "tolerance",
+      "label": "Tolerance...",
+      "labelKo": "공차...",
+      "location": [
+        "Dimension",
+        "Tolerance..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "toolbar",
+      "label": "Tool Bar",
+      "labelKo": "도구 막대",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "transparencydisplay",
+      "label": "Show/Hide Transparency",
+      "labelKo": "투명도 표시/숨기기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "trim",
+      "label": "Trim",
+      "labelKo": "자르기",
+      "location": [
+        "Modify",
+        "Trim"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "txt2mtxt",
+      "label": "Convert Text to Mtext",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "Additional Tools",
+        "Convert Text to Mtext"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "u",
+      "label": "Undo",
+      "labelKo": "실행 취소",
+      "location": [
+        "Edit",
+        "Undo"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ucs",
+      "label": "UCS",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ucs.3point",
+      "label": "3 Point",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "New UCS",
+        "3 Point"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ucs.origin",
+      "label": "Origin",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "New UCS",
+        "Origin"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ucs.view",
+      "label": "View",
+      "labelKo": "뷰",
+      "location": [
+        "Tools",
+        "New UCS",
+        "View"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ucs.world",
+      "label": "World",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "New UCS",
+        "World"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ucs.z",
+      "label": "Z",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "New UCS",
+        "Z"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ucsicon",
+      "label": "UCS Icon",
+      "labelKo": "UCS 아이콘",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.animations",
+      "label": "Animation Effects",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.animations.off",
+      "label": "Off",
+      "labelKo": "끄기",
+      "location": [
+        "View",
+        "Accessibility",
+        "Animation Effects",
+        "Off"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.animations.on",
+      "label": "On",
+      "labelKo": "켜기",
+      "location": [
+        "View",
+        "Accessibility",
+        "Animation Effects",
+        "On"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.animations.system",
+      "label": "Use System Setting",
+      "labelKo": "시스템 설정 사용",
+      "location": [
+        "View",
+        "Accessibility",
+        "Animation Effects",
+        "Use System Setting"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.cmdline.clear",
+      "label": "Clear Command History",
+      "labelKo": "명령 기록 지우기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.cmdline.lines",
+      "label": "Command Line History Lines",
+      "labelKo": "명령행 기록 줄 수",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dialog.about",
+      "label": "About CADCraft",
+      "labelKo": "CADCraft 정보",
+      "location": [
+        "Help",
+        "About CADCraft"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dialog.blocks",
+      "label": "Blocks",
+      "labelKo": "블록",
+      "location": [
+        "Window",
+        "Blocks"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dialog.commands",
+      "label": "Command Reference",
+      "labelKo": "명령 참조",
+      "location": [
+        "Help",
+        "CADCraft Help"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dialog.dsettings",
+      "label": "Drafting Settings...",
+      "labelKo": "제도 설정...",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dialog.find",
+      "label": "Find and Replace",
+      "labelKo": "찾기 및 바꾸기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dialog.language",
+      "label": "Interface Language",
+      "labelKo": "인터페이스 언어",
+      "location": [
+        "Edit",
+        "Interface Language"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dialog.layers",
+      "label": "Layer Properties Manager",
+      "labelKo": "도면층 특성 관리자",
+      "location": [
+        "Window",
+        "Layers"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dialog.parameters",
+      "label": "Parameters Manager",
+      "labelKo": "매개변수 관리자",
+      "location": [
+        "Window",
+        "Parameters Manager"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dialog.qselect",
+      "label": "Quick Select...",
+      "labelKo": "빠른 선택...",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dock",
+      "label": "Arrange Panel",
+      "labelKo": "패널 배치",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.dock.reset",
+      "label": "Reset Panel Layout",
+      "labelKo": "패널 배치 초기화",
+      "location": [
+        "Window",
+        "Reset Panel Layout"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.hidepalettes",
+      "label": "Hide Palettes",
+      "labelKo": "팔레트 숨기기",
+      "location": [
+        "Window",
+        "Hide Palettes"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.language",
+      "label": "Language",
+      "labelKo": "언어",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "ui.newtemplate",
+      "label": "New from Template...",
+      "labelKo": "템플릿에서 새로 만들기...",
+      "location": [
+        "File",
+        "New from Template..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.noop",
+      "label": "",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "ui.open",
+      "label": "Open...",
+      "labelKo": "열기...",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.panel.layers",
+      "label": "Layers Palette",
+      "labelKo": "도면층 팔레트",
+      "location": [
+        "Window",
+        "Layers Palette"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.panel.properties",
+      "label": "Properties Inspector",
+      "labelKo": "특성 검사기",
+      "location": [
+        "Window",
+        "Properties Inspector"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.panel.quickcalc",
+      "label": "QuickCalc",
+      "labelKo": "빠른 계산기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "ui.quit",
+      "label": "Quit CADCraft",
+      "labelKo": "CADCraft 종료",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "ui.recent.clear",
+      "label": "Clear Recent Files",
+      "labelKo": null,
+      "location": [
+        "File",
+        "Open Recent"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.resetpalettes",
+      "label": "Reset Palettes",
+      "labelKo": "팔레트 초기화",
+      "location": [
+        "Window",
+        "Reset Palettes"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "ui.sample",
+      "label": "Open Sample Drawing",
+      "labelKo": "예제 도면 열기",
+      "location": [
+        "Help",
+        "Open Sample Drawing"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "ui.saveas",
+      "label": "Save As...",
+      "labelKo": "다른 이름으로 저장...",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.saveformat",
+      "label": "Default Save Format",
+      "labelKo": "기본 저장 형식",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.saveformat.dwg",
+      "label": "DWG",
+      "labelKo": null,
+      "location": [
+        "File",
+        "Default Save Format",
+        "DWG"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.saveformat.dxf",
+      "label": "DXF",
+      "labelKo": null,
+      "location": [
+        "File",
+        "Default Save Format",
+        "DXF"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.saveversion",
+      "label": "Default Save Version",
+      "labelKo": "기본 저장 버전",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.saveversion.2000",
+      "label": "Version 2000",
+      "labelKo": "버전 2000",
+      "location": [
+        "File",
+        "Default Save Format",
+        "Version 2000"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.saveversion.2004",
+      "label": "Version 2004",
+      "labelKo": "버전 2004",
+      "location": [
+        "File",
+        "Default Save Format",
+        "Version 2004"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.saveversion.2007",
+      "label": "Version 2007",
+      "labelKo": "버전 2007",
+      "location": [
+        "File",
+        "Default Save Format",
+        "Version 2007"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.saveversion.2010",
+      "label": "Version 2010",
+      "labelKo": "버전 2010",
+      "location": [
+        "File",
+        "Default Save Format",
+        "Version 2010"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.saveversion.2013",
+      "label": "Version 2013",
+      "labelKo": "버전 2013",
+      "location": [
+        "File",
+        "Default Save Format",
+        "Version 2013"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.saveversion.2018",
+      "label": "Version 2018",
+      "labelKo": "버전 2018",
+      "location": [
+        "File",
+        "Default Save Format",
+        "Version 2018"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.shortcuts",
+      "label": "Keyboard Shortcuts...",
+      "labelKo": null,
+      "location": [
+        "Tools",
+        "Customize",
+        "Keyboard Shortcuts..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.spacemouse",
+      "label": "3D Mouse...",
+      "labelKo": "3D 마우스...",
+      "location": [
+        "Tools",
+        "3D Mouse..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.spacemouse.calibrate",
+      "label": "Calibrate 3D Mouse",
+      "labelKo": "3D 마우스 보정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.spacemouse.navigate",
+      "label": "3D Mouse Navigation",
+      "labelKo": "3D 마우스 탐색",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.start",
+      "label": "Start",
+      "labelKo": "시작",
+      "location": [
+        "Window",
+        "Start"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.theme",
+      "label": "Interface Theme",
+      "labelKo": "인터페이스 테마",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.theme.dark",
+      "label": "Dark",
+      "labelKo": "어둡게",
+      "location": [
+        "View",
+        "Interface Theme",
+        "Dark"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.theme.light",
+      "label": "Light",
+      "labelKo": "밝게",
+      "location": [
+        "View",
+        "Interface Theme",
+        "Light"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.theme.system",
+      "label": "Use System Setting",
+      "labelKo": "시스템 설정 사용",
+      "location": [
+        "View",
+        "Interface Theme",
+        "Use System Setting"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.cmdline",
+      "label": "Command Line",
+      "labelKo": "명령행",
+      "location": [
+        "Window",
+        "Command Line"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.filetabs",
+      "label": "File Tab",
+      "labelKo": "파일 탭",
+      "location": [
+        "Window",
+        "File Tab"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.history",
+      "label": "Command History",
+      "labelKo": "명령 기록",
+      "location": [
+        "Window",
+        "Command History"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.menubar",
+      "label": "In-window Menu Bar",
+      "labelKo": "창 내부 메뉴 막대",
+      "location": [
+        "Window",
+        "In-window Menu Bar"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.quickcalc",
+      "label": "QuickCalc",
+      "labelKo": "빠른 계산기",
+      "location": [
+        "Window",
+        "QuickCalc"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.statusbar",
+      "label": "Status Bar",
+      "labelKo": "상태 막대",
+      "location": [
+        "Window",
+        "Status Bar"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.systemcursor",
+      "label": "Show System Cursor",
+      "labelKo": "시스템 커서 표시",
+      "location": [
+        "View",
+        "Accessibility",
+        "Show System Cursor"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.toolbar",
+      "label": "Tool Bar",
+      "labelKo": "도구 막대",
+      "location": [
+        "Window",
+        "Tool Bar"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.toolsets",
+      "label": "Tool Sets",
+      "labelKo": "도구 세트",
+      "location": [
+        "Window",
+        "Tool Sets"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.ucsicon",
+      "label": "UCS Icon",
+      "labelKo": "UCS 아이콘",
+      "location": [
+        "View",
+        "UCS Icon",
+        "On"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.ucsicon.origin",
+      "label": "UCS Icon at Origin",
+      "labelKo": null,
+      "location": [
+        "View",
+        "UCS Icon",
+        "Origin"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ui.toggle.viewcube",
+      "label": "ViewCube",
+      "labelKo": "뷰 큐브",
+      "location": [
+        "View",
+        "ViewCube",
+        "On"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "ui.updates.check",
+      "label": "Check for Updates…",
+      "labelKo": "업데이트 확인…",
+      "location": [
+        "Help",
+        "Check for Updates…"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "undo",
+      "label": "Undo",
+      "labelKo": "실행 취소",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "ungroup",
+      "label": "Ungroup",
+      "labelKo": "그룹 해제",
+      "location": [
+        "Tools",
+        "Ungroup"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "union",
+      "label": "Union",
+      "labelKo": "합집합",
+      "location": [
+        "Modify",
+        "Solid Editing",
+        "Union"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "unisolateobjects",
+      "label": "End Object Isolation",
+      "labelKo": "객체 분리 종료",
+      "location": [
+        "Tools",
+        "Isolate",
+        "End Object Isolation"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "units",
+      "label": "Units...",
+      "labelKo": "단위...",
+      "location": [
+        "Format",
+        "Units..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "usage",
+      "label": "Analyze Usage",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "view",
+      "label": "Named Views...",
+      "labelKo": "명명된 뷰...",
+      "location": [
+        "View",
+        "Named Views..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "view.get",
+      "label": "Get View",
+      "labelKo": "뷰 조회",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "view.set",
+      "label": "Set View",
+      "labelKo": "뷰 설정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "viewport.set",
+      "label": "Viewport Properties",
+      "labelKo": "뷰포트 특성",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "volume.measure",
+      "label": "Volume",
+      "labelKo": "체적",
+      "location": [
+        "Tools",
+        "Inquiry",
+        "Volume"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "vpclip",
+      "label": "Clip Viewport",
+      "labelKo": "뷰포트 자르기",
+      "location": [
+        "Modify",
+        "Clip",
+        "Viewport"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "vplayer",
+      "label": "Viewport Layer Freeze",
+      "labelKo": "뷰포트 도면층 동결",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "vports",
+      "label": "New Viewports...",
+      "labelKo": "새 뷰포트...",
+      "location": [
+        "View",
+        "Viewports",
+        "New Viewports..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "vports.1",
+      "label": "1 Viewport",
+      "labelKo": "뷰포트 1개",
+      "location": [
+        "View",
+        "Viewports",
+        "1 Viewport"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "vports.2",
+      "label": "2 Viewports",
+      "labelKo": "뷰포트 2개",
+      "location": [
+        "View",
+        "Viewports",
+        "2 Viewports"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "vports.3",
+      "label": "3 Viewports",
+      "labelKo": "뷰포트 3개",
+      "location": [
+        "View",
+        "Viewports",
+        "3 Viewports"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "vports.4",
+      "label": "4 Viewports",
+      "labelKo": "뷰포트 4개",
+      "location": [
+        "View",
+        "Viewports",
+        "4 Viewports"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "vports.activate",
+      "label": "Set Current Viewport",
+      "labelKo": "현재 뷰포트 설정",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "vports.named",
+      "label": "Named Viewports...",
+      "labelKo": "명명된 뷰포트...",
+      "location": [
+        "View",
+        "Viewports",
+        "Named Viewports..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "wblock",
+      "label": "Write Block",
+      "labelKo": "블록 쓰기",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "wblockpick",
+      "label": "Write Block Pick",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "wipeout",
+      "label": "Wipeout",
+      "labelKo": "가리기",
+      "location": [
+        "Draw",
+        "Wipeout"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "xattach",
+      "label": "DWG Reference...",
+      "labelKo": "DWG 참조...",
+      "location": [
+        "Insert",
+        "DWG Reference..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "xbind",
+      "label": "Bind...",
+      "labelKo": "결합...",
+      "location": [
+        "Modify",
+        "Object",
+        "External Reference",
+        "Bind..."
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "xclip",
+      "label": "Clip Xref",
+      "labelKo": null,
+      "location": [
+        "Modify",
+        "Clip",
+        "Xref"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "xclipframe",
+      "label": "Xref Clip Frame",
+      "labelKo": null,
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "xline",
+      "label": "Construction Line",
+      "labelKo": "구성선",
+      "location": [
+        "Draw",
+        "Construction Line"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "locked"
+      },
+      "id": "xopen",
+      "label": "Open Xref",
+      "labelKo": "외부 참조 열기",
+      "location": [
+        "Tools",
+        "Open Xref"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "xref",
+      "label": "Reference Manager",
+      "labelKo": "참조 관리자",
+      "location": [
+        "Window",
+        "Reference Manager"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "zoom",
+      "label": "Zoom",
+      "labelKo": "줌",
+      "location": []
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "zoom.all",
+      "label": "Zoom All",
+      "labelKo": "전체 줌",
+      "location": [
+        "View",
+        "Zoom",
+        "All"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "zoom.dynamic",
+      "label": "Zoom Dynamic",
+      "labelKo": "동적 줌",
+      "location": [
+        "View",
+        "Zoom",
+        "Dynamic"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "zoom.extents",
+      "label": "Zoom Extents",
+      "labelKo": "범위 줌",
+      "location": [
+        "View",
+        "Zoom",
+        "Extents"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "zoom.in",
+      "label": "Zoom In",
+      "labelKo": "확대",
+      "location": [
+        "View",
+        "Zoom",
+        "In"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "zoom.object",
+      "label": "Zoom Object",
+      "labelKo": "객체 줌",
+      "location": [
+        "View",
+        "Zoom",
+        "Object"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "zoom.out",
+      "label": "Zoom Out",
+      "labelKo": "축소",
+      "location": [
+        "View",
+        "Zoom",
+        "Out"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "zoom.previous",
+      "label": "Zoom Previous",
+      "labelKo": "이전 줌",
+      "location": [
+        "View",
+        "Zoom",
+        "Previous"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "zoom.realtime",
+      "label": "Zoom Realtime",
+      "labelKo": "실시간 줌",
+      "location": [
+        "View",
+        "Zoom",
+        "Realtime"
+      ]
+    },
+    {
+      "grades": {
+        "builder": "on"
+      },
+      "id": "zoom.window",
+      "label": "Zoom Window",
+      "labelKo": "창 줌",
+      "location": [
+        "View",
+        "Zoom",
+        "Window"
+      ]
+    }
+  ],
+  "schema": 1
+}

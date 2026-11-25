@@ -3,6 +3,23 @@ use super::{Arc, EngineError, Result, Session, Snapshot, Value, cmd, find_comman
 impl Session {
     // ---------------- programmatic execution ----------------
 
+    /// Take back every change not saved, in every open drawing, and stop the running command:
+    /// the backstop of a read-only drawing (see [`crate::hostlock`]), for an edit that got past
+    /// the commands' own check. Returns whether anything was taken back.
+    pub fn discard_unsaved_changes(&mut self) -> bool {
+        let changed = self.docs.iter().any(|d| d.block_edit.is_none() && !Arc::ptr_eq(&d.doc, &d.saved));
+        if !changed {
+            return false;
+        }
+        self.cancel();
+        for d in self.docs.iter_mut().filter(|d| d.block_edit.is_none() && !Arc::ptr_eq(&d.doc, &d.saved)) {
+            d.doc = d.saved.clone();
+            d.selection.clear();
+            d.revision = d.revision.wrapping_add(1);
+        }
+        true
+    }
+
     /// Run a command with JSON parameters (no dialogs). Records undo when the drawing changes.
     ///
     /// The command itself is guarded below, where its own panic can be told apart. This guard is

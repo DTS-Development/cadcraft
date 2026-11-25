@@ -82,6 +82,7 @@ pub(crate) enum Command {
     Perf(PerfArgs),
     Sample(SampleArgs),
     Roundtrip(RoundtripArgs),
+    Compare(CompareArgs),
 }
 
 /// Print a drawing's summary as JSON
@@ -314,6 +315,30 @@ fn perf_target(p: PathBuf) -> PerfTarget {
         Some(n) => PerfTarget::Count(n.clamp(1, MAX_PERF_COUNT)),
         None => PerfTarget::File(p),
     }
+}
+
+/// Print what changed between two versions of a drawing (DXF or DWG) as JSON
+///
+/// Differences are what AFTER lost, gained or changed against BEFORE. Time stamps, the handle
+/// seed and GUIDs of the header are not compared, and neither are handle renumberings (a save
+/// renumbers handles of objects nobody touched).
+#[derive(Args)]
+pub(crate) struct CompareArgs {
+    /// The earlier version
+    #[arg(value_name = "BEFORE", help = read_help())]
+    pub(crate) before: PathBuf,
+    /// The later version
+    #[arg(value_name = "AFTER", help = read_help())]
+    pub(crate) after: PathBuf,
+    /// One line of JSON instead of pretty-printed
+    #[arg(long)]
+    pub(crate) compact: bool,
+    /// How far numbers may move and still count as equal
+    #[arg(long, value_name = "T", default_value_t = cadcraft_io::roundtrip::Options::default().abs_tol, value_parser = tolerance)]
+    pub(crate) tolerance: f64,
+    /// Most differences listed; the rest are only counted
+    #[arg(long, value_name = "N", default_value_t = cadcraft_io::roundtrip::Options::default().max_differences)]
+    pub(crate) max_differences: usize,
 }
 
 /// Open each DXF/DWG, save it as DXF and DWG, reopen and compare; writes report.md and report.json

@@ -497,6 +497,10 @@ pub const NO_FILES: &[&str] = &[
 
 /// Why command `id` may not run here; `None` when it may. Without roots in force everything may.
 pub fn refusal(id: &str) -> Option<String> {
+    // The host page's lock (PPM build) is asked first: it holds where no roots are in force.
+    if let Some(why) = crate::hostlock::refusal(id) {
+        return Some(why);
+    }
     super::current()?;
     if let Some((_, why)) = REFUSED.iter().find(|(c, _)| *c == id) {
         return Some(format!("automation command refused: {why}"));

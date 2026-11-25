@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# PPM 포크 웹 빌드: 한글 글꼴(NanumGothic, OFL-1.1)을 넣어 dist/web 을 만든다.
+# 이 글꼴, 한글 글꼴 세트(나눔명조, 나눔고딕코딩, Black Han Sans, Pretendard)와 Office 호환 글꼴(Carlito, Caladea, Liberation)만 들어간다(업스트림 릴리스에 있던 다른 글꼴은 빠진다).
+# 필요: Rust 1.95+ (기본 1.99.1), wasm32-unknown-unknown target, trunk 0.21+
+set -euo pipefail
+root="$(cd "$(dirname "$0")/.." && pwd)"
+export CRAFT_FONTS_DIR="$root/ppm/fonts-ko"
+export RUSTUP_TOOLCHAIN="${RUSTUP_TOOLCHAIN:-1.99.1}"
+app=cadcraft-web
+cd "$root/apps/$app"
+# ppm-host: host mode only (no local open/save/print; opened outside PPM it shows a notice). The Korean font filter of the web build is lifted.
+# 인자 없음: release(PR·배포용). --fast: 로컬 확인용(LTO 없음, wasm-opt 건너뜀, 크기 큼).
+case "${1:-}" in
+  "") trunk build --release --features ppm-host ;;
+  --fast) trunk build --cargo-profile web-fast --features ppm-host ;;
+  *) echo "usage: $0 [--fast]" >&2; exit 2 ;;
+esac
+# OFL-1.1 §2: the license travels with the embedded font.
+mkdir -p "$root/dist/web/licenses"
+cp "$root/ppm/fonts-ko/fonts/nanum-gothic/OFL.txt" "$root/dist/web/licenses/NanumGothic-OFL.txt"
+# Office 호환 글꼴(Carlito, Caladea, Liberation): 글꼴마다 자기 라이선스(Caladea만 Apache-2.0)가 함께 간다.
+for dir in carlito caladea liberation-sans liberation-serif liberation-mono nanum-myeongjo nanum-gothic-coding black-han-sans pretendard; do
+  for lic in "$root/ppm/fonts-ko/fonts/$dir/OFL.txt" "$root/ppm/fonts-ko/fonts/$dir/LICENSE.txt" "$root/ppm/fonts-ko/fonts/$dir/LICENSE"; do
+    [ -f "$lic" ] && cp "$lic" "$root/dist/web/licenses/$dir-$(basename "$lic")"
+  done
+done
+# 관리자 화면이 읽는 명령 목록(표와 같은지는 ui-egui 테스트가 확인한다).
+cp "$root/ppm/commands.json" "$root/dist/web/commands.json"

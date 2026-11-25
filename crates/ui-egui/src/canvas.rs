@@ -560,7 +560,9 @@ fn paint_pointer_overlay(frame: &mut CanvasPaint<'_>, paper_rect: Option<Rect>, 
     // Typing and Escape reach the command line even when its overlay is hidden.
     crate::cmdline::keyboard(app, ui.ctx());
     // Command line overlay.
-    if app.ui.show_command_line {
+    // A host page's `chrome: false` shows the drawing alone: the command line is an editing
+    // surface, so it goes (the ViewCube and UCS icon are view aids and stay).
+    if app.ui.show_command_line && app.host_view.chrome {
         crate::cmdline::show(app, ui, full);
     }
     // Crosshair cursor.
