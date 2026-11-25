@@ -47,6 +47,7 @@ fn craft_fonts(dir: &std::path::Path) -> Result<String, String> {
     // be a regular file, and is read through a limit so `/dev/zero` can't fill memory.
     let text = read_manifest(&resolve_font(&root, "fonts/manifest.txt")?)?;
     let wasm = std::env::var("CARGO_CFG_TARGET_ARCH").is_ok_and(|a| a == "wasm32");
+    let ppm_host = std::env::var_os("CARGO_FEATURE_PPM_HOST").is_some();
     let mut out = String::new();
     for (n, line) in text.lines().enumerate().map(|(n, l)| (n + 1, l.trim())).filter(|(_, l)| !l.is_empty() && !l.starts_with('#')) {
         let f: Vec<&str> = line.split(" | ").map(str::trim).collect();
@@ -60,7 +61,8 @@ fn craft_fonts(dir: &std::path::Path) -> Result<String, String> {
         }
         let has = |script: &str| scripts.split(',').any(|s| s.trim() == script);
         let web_face = (*family == "BIZ UDPGothic" && *style == "Regular") || has("Arab") || has("Geor") || (has("Thai") && *style == "Regular");
-        if wasm && !web_face {
+        // `ppm-host` (the PPM build) embeds the whole input: its manifest holds the Korean and Office fonts.
+        if wasm && !web_face && !ppm_host {
             continue;
         }
         let path = resolve_font(&root, file)?;

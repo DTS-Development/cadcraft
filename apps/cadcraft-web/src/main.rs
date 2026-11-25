@@ -10,12 +10,19 @@
 //! `data-host="page"` on the canvas, talking over DOM `CustomEvent`s on it (`host.rs`).
 #![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable)]
 
-#[cfg(target_arch = "wasm32")]
+// The PPM build (`ppm-host`) works only inside the PPM page: it has no page command API and no
+// downloads, and its host bridge is `ppm_host.rs` (see `gate.rs` for the rules without a browser).
+#[cfg(all(target_arch = "wasm32", not(feature = "ppm-host")))]
 mod api;
-#[cfg(target_arch = "wasm32")]
+#[cfg(all(target_arch = "wasm32", not(feature = "ppm-host")))]
 pub mod download;
-#[cfg(target_arch = "wasm32")]
+#[cfg(all(target_arch = "wasm32", not(feature = "ppm-host")))]
 mod host;
+#[cfg(all(target_arch = "wasm32", feature = "ppm-host"))]
+#[path = "ppm_host.rs"]
+mod host;
+#[cfg(any(feature = "ppm-host", test))]
+mod gate;
 
 #[cfg(any(target_arch = "wasm32", test))]
 mod panel_layout;
@@ -36,6 +43,9 @@ mod web {
     /// and the document title last written to the page.
     struct Shell(CadApp, crate::upload::Inbox, Option<crate::host::Bridge>, Option<web_sys::MediaQueryList>, Option<String>);
 
+    /// The PPM build: the lock, not the menu, is what keeps a drawing read only; a drawing the host
+    /// opened under it is the one thing that runs before the app's own frame.
+
     impl eframe::App for Shell {
         /// Runs one frame: takes in files dropped on or picked for the page, drains the background
         /// uploads, follows the browser's reduced-motion setting, runs the app, writes the browser
@@ -45,6 +55,10 @@ mod web {
             // Background reads are consume-based and run on hidden ticks too. Dropped files are
             // input and are read from `ui` only.
             self.1.drain(&mut self.0);
+            #[cfg(feature = "ppm-host")]
+            if let Some(bridge) = &self.2 {
+                bridge.pump(&mut self.0);
+            }
             self.0.system_animations = self.3.as_ref().map(|reduced| !reduced.matches());
             self.0.logic(ctx);
             let drawing = self.0.session.state().ok();
@@ -74,7 +88,8 @@ mod web {
         }
         /// On the first pass consume files dropped on the page, then delegate drawing to `CadApp::ui`.
         fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
-            let first_pass = ui.ctx().current_pass_index() == 0;
+            // The PPM build opens only what the host page sends: no dropped files.
+            let first_pass = ui.ctx().current_pass_index() == 0 && !cfg!(feature = "ppm-host");
             if first_pass {
                 // `take_dropped` consumes the raw list; a second pass or hidden tick cannot
                 // re-read the same file.
@@ -143,13 +158,27 @@ mod web {
         // `CustomEvent`s on the canvas (`host`). With neither, there is no file system here:
         // saved files reach the user as browser downloads; an unframed `?host=parent` stays
         // that normal app.
+        #[cfg(not(feature = "ppm-host"))]
         let bridge = crate::host::Bridge::connect(&canvas);
+        // The PPM build runs only inside the PPM page; opened on its own it says where to open it.
+        #[cfg(feature = "ppm-host")]
+        let bridge = crate::host::Bridge::connect();
+        #[cfg(feature = "ppm-host")]
+        if bridge.is_none() {
+            if let Some(el) = web_sys::window().and_then(|w| w.document()).and_then(|d| d.get_element_by_id(LOADING_ID)) {
+                el.set_inner_html(crate::gate::OPEN_FROM_PPM);
+            }
+            return;
+        }
         match &bridge {
             Some(bridge) => {
                 bridge.install();
                 cadcraft_engine::cmd::file::set_deliver(crate::host::deliver);
             }
+            #[cfg(not(feature = "ppm-host"))]
             None => cadcraft_engine::cmd::file::set_deliver(crate::download::download),
+            #[cfg(feature = "ppm-host")]
+            None => {}
         }
         let app_bridge = bridge.clone();
         wasm_bindgen_futures::spawn_local(async move {
@@ -167,8 +196,11 @@ mod web {
                     Box::new(move |cc| {
                         // Embedded, the host sends the drawing: start on the Start tab, not Drawing1.
                         let session = if app_bridge.is_some() { Session::empty() } else { Session::new() };
-                        let control = crate::api::install(cc.egui_ctx.clone());
-                        let mut app = CadApp::new(session, services()).with_control(control);
+                        // The page command API runs commands past the host's lock: not in the PPM build.
+                        #[cfg(not(feature = "ppm-host"))]
+                        let mut app = CadApp::new(session, services()).with_control(crate::api::install(cc.egui_ctx.clone()));
+                        #[cfg(feature = "ppm-host")]
+                        let mut app = CadApp::new(session, services());
                         app.system_languages =
                             web_sys::window().map(|w| w.navigator().languages().iter().filter_map(|v| v.as_string()).collect()).unwrap_or_default();
                         if let Some(profile) = cc.storage.and_then(|s| s.get_string(cadcraft_ui_egui::options::PROFILE_KEY)) {
@@ -181,6 +213,11 @@ mod web {
                             && let Err(error) = crate::panel_layout::restore(&mut app.ui, &layout)
                         {
                             log::warn!("panel layout was not restored: {error}");
+                        }
+                        // The PPM build is Korean, whatever the browser or the saved preferences say.
+                        #[cfg(feature = "ppm-host")]
+                        {
+                            app.ui.interface_language = cadcraft_ui_egui::i18n::Preference::Korean;
                         }
                         // `?cpu`: no render state for the app, so the canvas draws with egui shapes.
                         if !crate::wants_cpu(&query())
@@ -196,13 +233,19 @@ mod web {
                         // No paths on the web: OPEN asks the browser's file picker, which reads the
                         // chosen file in the background (`upload.rs`), so the picker returns none.
                         let inbox = crate::upload::Inbox::new(&cc.egui_ctx);
-                        let picker = inbox.clone();
-                        app.services.pick_open = Some(Box::new(move || {
-                            picker.pick();
-                            None
-                        }));
+                        #[cfg(not(feature = "ppm-host"))]
+                        {
+                            let picker = inbox.clone();
+                            app.services.pick_open = Some(Box::new(move || {
+                                picker.pick();
+                                None
+                            }));
+                        }
                         let host = app_bridge.inspect(|bridge| {
+                            #[cfg(not(feature = "ppm-host"))]
                             bridge.listen(inbox.clone());
+                            #[cfg(feature = "ppm-host")]
+                            bridge.listen(cc.egui_ctx.clone());
                             bridge.post_ready();
                         });
                         let reduced_motion = web_sys::window().and_then(|w| w.match_media("(prefers-reduced-motion: reduce)").ok().flatten());
@@ -269,7 +312,9 @@ fn push_title(sent: &mut Option<String>, name: Option<&str>, dirty: bool, write:
     }
 }
 
+// The PPM build opens only what the host sends: the picker and the drop reader are left unused.
 #[cfg(target_arch = "wasm32")]
+#[cfg_attr(feature = "ppm-host", allow(dead_code))]
 mod upload;
 
 #[cfg(target_arch = "wasm32")]

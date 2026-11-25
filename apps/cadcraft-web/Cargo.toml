@@ -14,6 +14,10 @@ workspace = true
 name = "cadcraft-web"
 path = "src/main.rs"
 
+[features]
+# The PPM build (ppm/build-web.sh): host mode only, for the page that frames it (src/ppm_host.rs).
+ppm-host = ["cadcraft-fonts/ppm-host"]
+
 [dependencies]
 cadcraft-engine = { workspace = true }
 cadcraft-ui-egui = { workspace = true }
@@ -36,4 +40,4 @@ eframe = { workspace = true, features = ["persistence", "wgpu", "accesskit"] }
 wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"
 js-sys = "0.3"
-web-sys = { version = "0.3", features = ["Window", "Document", "Element", "HtmlElement", "HtmlCanvasElement", "HtmlAnchorElement", "Location", "Navigator", "Blob", "BlobPropertyBag", "Url", "MessageEvent", "UrlSearchParams", "MediaQueryList", "Event", "EventTarget", "CustomEvent", "CustomEventInit"] }
+web-sys = { version = "0.3", features = ["Window", "Document", "Element", "HtmlElement", "HtmlCanvasElement", "HtmlAnchorElement", "Location", "Navigator", "Blob", "BlobPropertyBag", "Url", "MessageEvent", "UrlSearchParams", "MediaQueryList", "Event", "EventTarget", "CustomEvent", "CustomEventInit", "KeyboardEvent"] }
