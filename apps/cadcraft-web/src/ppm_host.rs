@@ -106,7 +106,11 @@ impl Bridge {
         })
     }
 
-    pub fn install(&self) {}
+    /// Before the parent's first open the lock is already in force (nothing opens or saves, the
+    /// About links are text); the open then replaces it with the parent's own.
+    pub fn install(&self) {
+        hostlock::install(Some(Lock::default()));
+    }
 
     pub fn post_ready(&self) {
         let options: js_sys::Array = gate::OPEN_OPTIONS.iter().map(|o| JsValue::from_str(o)).collect();

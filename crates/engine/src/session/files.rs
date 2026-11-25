@@ -45,13 +45,21 @@ impl Session {
     /// closed drawings' AutoLISP state and bumps the epoch. Returns whether anything was closed;
     /// an unknown `uid` closes nothing.
     pub fn keep_only(&mut self, uid: u64) -> bool {
-        if !self.docs.iter().any(|d| d.uid == uid) || self.docs.iter().all(|d| d.uid == uid) {
+        self.keep_uids(&[uid], Some(uid))
+    }
+
+    /// Close every drawing whose `uid` is not in `keep`, and make the one with `active_uid` (when
+    /// it is kept) the active one. Ends a running command, forgets the closed drawings' AutoLISP
+    /// state and bumps the epoch. Returns whether anything was closed; with none of `keep` open
+    /// nothing is closed.
+    pub fn keep_uids(&mut self, keep: &[u64], active_uid: Option<u64>) -> bool {
+        if !self.docs.iter().any(|d| keep.contains(&d.uid)) || self.docs.iter().all(|d| keep.contains(&d.uid)) {
             return false;
         }
         self.cancel();
-        self.docs.retain(|d| d.uid == uid);
+        self.docs.retain(|d| keep.contains(&d.uid));
         self.lisp_forget_closed();
-        self.active = 0;
+        self.active = active_uid.and_then(|u| self.docs.iter().position(|d| d.uid == u)).unwrap_or(0);
         self.bump_doc_epoch();
         true
     }

@@ -152,3 +152,34 @@ fn the_bytes_are_what_document_bytes_writes() {
     let data = via_command["data"].as_str().expect("data");
     assert_eq!(cadcraft_engine::cmd::file::base64_decode(data).expect("base64"), bytes);
 }
+
+#[test]
+fn only_a_dxf_opens_whatever_the_name_or_content_says_otherwise() {
+    let mut app = app();
+    let a = open(&mut app, "a.dxf", &dxf(1), plain());
+    let lisp = b"(princ \"loaded\")";
+    for name in ["run.lsp", "run.LSP", "plan.dxf.lsp", "noext", "plan.dwg", ".lsp"] {
+        let err = app.host_open(name, lisp, Lock::default(), HostView::default()).unwrap_err();
+        assert!(err.starts_with("unsupported-format"), "{name}: {err}");
+    }
+    // A DWG under a .dxf name is not decoded in the browser either.
+    let err = app.host_open("plan.dxf", b"AC1015\0\0\0\0\0\0\0\0", Lock::default(), HostView::default()).unwrap_err();
+    assert!(err.starts_with("unsupported-format"), "{err}");
+    // Nothing was opened, replaced or re-locked.
+    assert!(app.host_has(a));
+    assert_eq!(app.session.docs.len(), 1);
+    assert!(!hostlock::is_read_only());
+    open(&mut app, "B.DXF", &dxf(2), plain());
+}
+
+#[test]
+fn keep_uids_restores_the_active_drawing_it_names() {
+    let mut app = app();
+    let a = open(&mut app, "a.dxf", &dxf(1), plain());
+    app.session.new_drawing(false);
+    app.session.new_drawing(false);
+    let uids: Vec<u64> = app.session.docs.iter().map(|d| d.uid).collect();
+    assert!(app.session.keep_uids(&uids[..2], Some(a)));
+    assert_eq!(app.session.docs.len(), 2);
+    assert_eq!(app.session.state().expect("active").uid, a);
+}
