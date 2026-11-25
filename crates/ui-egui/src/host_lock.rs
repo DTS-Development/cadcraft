@@ -3,7 +3,83 @@
 //! command has a grade: `locked` ones never run in the PPM build; the rest are `on`, and a
 //! parent's `policy.overrides` can switch them off.
 
-use cadcraft_engine::hostlock;
+use cadcraft_engine::hostlock::{self, Lock};
+
+use crate::{CadApp, HostView};
+
+/// A link to `url`, or only its text when a host page holds the app (an external link leaves the
+/// document, which the lock keeps with the host).
+pub(crate) fn link(ui: &mut egui::Ui, text: impl Into<egui::WidgetText>, url: &str) -> egui::Response {
+    if hostlock::current().is_some() { ui.label(text) } else { ui.hyperlink_to(text, url) }
+}
+
+/// What a host page does with the one drawing it opened (PPM build). The page's open replaces the
+/// drawing, so there is a single drawing, and the lock (one per app) always describes it. Calls
+/// that name the drawing by its `uid` find nothing once the user has closed it.
+impl CadApp {
+    /// Open `bytes` as the page's drawing under `lock` and `view`, and close every other drawing.
+    /// A failed open leaves the earlier drawing, lock and view as they were. Returns the new
+    /// drawing's `uid`.
+    pub fn host_open(&mut self, name: &str, bytes: &[u8], lock: Lock, view: HostView) -> Result<u64, String> {
+        let earlier_lock = hostlock::install(Some(lock));
+        let earlier_view = std::mem::replace(&mut self.host_view, view);
+        let before: Vec<u64> = self.session.docs.iter().map(|d| d.uid).collect();
+        self.take_open_errors();
+        hostlock::host_entry(|| self.open_bytes(name, bytes));
+        let error = self.take_open_errors().into_iter().next();
+        let opened = self.session.state().ok().map(|d| d.uid).filter(|uid| !before.contains(uid));
+        match (error, opened) {
+            (None, Some(uid)) => {
+                self.session.keep_only(uid);
+                Ok(uid)
+            }
+            (error, _) => {
+                // Whatever got added before the failure goes too: the earlier drawing is the page's.
+                let kept: Vec<u64> = before;
+                self.session.docs.retain(|d| kept.contains(&d.uid));
+                self.session.active = self.session.active.min(self.session.docs.len().saturating_sub(1));
+                hostlock::install(earlier_lock);
+                self.host_view = earlier_view;
+                Err(error.unwrap_or_else(|| "open: no drawing was opened".to_string()))
+            }
+        }
+    }
+
+    /// Is `uid` the drawing on screen? False once the user closed it or another one is active.
+    pub fn host_has(&self, uid: u64) -> bool {
+        self.session.state().is_ok_and(|d| d.uid == uid)
+    }
+
+    /// Keep the page's drawing the only one: a command that adds a drawing anyway is undone here.
+    pub fn host_only(&mut self, uid: u64) -> bool {
+        self.session.keep_only(uid)
+    }
+
+    /// Does the page's drawing hold unsaved changes? A read-only drawing never does.
+    pub fn host_dirty(&self, uid: u64) -> bool {
+        !hostlock::is_read_only() && self.session.docs.iter().any(|d| d.uid == uid && d.is_dirty())
+    }
+
+    /// The page's drawing as DXF bytes and its title. With `save` the drawing counts as saved
+    /// (the page stores what it is handed) and a read-only drawing refuses. The page's call is not
+    /// a menu action: the administrator's switches (a disabled save menu) do not apply.
+    pub fn host_bytes(&mut self, uid: u64, save: bool) -> Result<(String, Vec<u8>), String> {
+        if !self.host_has(uid) {
+            return Err("not-ready".into());
+        }
+        if save && hostlock::is_read_only() {
+            return Err("read-only".into());
+        }
+        let (bytes, _) = hostlock::as_host(|| cadcraft_engine::cmd::file::document_bytes(&mut self.session, &serde_json::json!({ "format": "dxf" })))
+            .map_err(|e| e.to_string())?;
+        let state = self.session.state_mut().map_err(|e| e.to_string())?;
+        let title = state.title.clone();
+        if save {
+            state.saved = state.doc.clone();
+        }
+        Ok((title, bytes))
+    }
+}
 
 /// The grade name of command `id` in `commands.json`.
 fn grade(id: &str) -> &'static str {

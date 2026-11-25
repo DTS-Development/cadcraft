@@ -9,7 +9,10 @@
 //!   the server first). The three booleans belong to that drawing; a missing one is today's
 //!   behaviour. `readOnly` lets nothing edit or save it; `chrome: false` shows the drawing alone;
 //!   `zoomControls` keeps a zoom bar then. `policy.overrides` is `{ "<command id>": true | false }`
-//!   (see `commands.json`); a malformed policy changes nothing.
+//!   (see `commands.json`); a malformed policy changes nothing. An open **replaces** the drawing
+//!   (the page has one drawing, so one lock): the earlier drawing and its unsaved changes are
+//!   closed, and an open that fails leaves it. Several opens in one frame: the last one is
+//!   opened and the others fail with `superseded:`.
 //! - `cadcraft:failed` (to the parent): `{ error }` when the app couldn't start or a drawing
 //!   couldn't be opened (the `error` starts with a code such as `unsupported-format:`). A failed
 //!   open leaves the earlier drawing and its options as they were.
@@ -68,8 +71,9 @@ pub struct Bridge {
     byte_requests: Rc<RefCell<Vec<(String, &'static str)>>>,
     actions: Rc<RefCell<Vec<(String, gate::Action)>>>,
     info_requests: Rc<RefCell<Vec<String>>>,
-    /// A drawing was opened, so there is one to answer `request-bytes` with.
-    opened: Rc<Cell<bool>>,
+    /// The `uid` of the drawing the parent opened: the one `request-bytes`, `request-info` and
+    /// `action` answer for. A parent's open replaces the drawing, so it is the only one.
+    host_doc: Rc<Cell<Option<u64>>>,
     /// Fonts were added: the next frame regenerates the drawings with them.
     regen: Rc<Cell<bool>>,
     /// The unsaved-changes state last reported to the parent.
@@ -96,7 +100,7 @@ impl Bridge {
             byte_requests: Rc::default(),
             actions: Rc::default(),
             info_requests: Rc::default(),
-            opened: Rc::default(),
+            host_doc: Rc::default(),
             regen: Rc::default(),
             reported: Rc::default(),
         })
@@ -116,15 +120,29 @@ impl Bridge {
     /// Before each frame: open what arrived, answer the byte requests, and take back any edit that
     /// got past a read-only drawing's command check.
     pub fn pump(&self, app: &mut CadApp) {
-        for open in std::mem::take(&mut *self.opens.borrow_mut()) {
-            self.open(app, open);
+        // Opens that pile up in one frame: the last one replaces the drawing, and the ones it
+        // replaced are told so (each open gets exactly one answer, and a big drawing is not
+        // parsed only to be thrown away).
+        let mut opens = std::mem::take(&mut *self.opens.borrow_mut());
+        if let Some(last) = opens.pop() {
+            for _ in 0..opens.len() {
+                self.post_failed("superseded: a newer open arrived before this one was drawn");
+            }
+            self.open(app, last);
+        }
+        // The host's drawing is the only one: a command that added another (a locked command is
+        // refused, but not every path is a command) is closed again, so no lock, tab or byte
+        // request can reach a second drawing.
+        if let Some(uid) = self.host_doc.get() {
+            app.host_only(uid);
         }
         if hostlock::is_read_only() {
             app.session.discard_unsaved_changes();
         }
         if self.regen.take() {
             // Drawings take the added fonts; a refusal (a read-only drawing) leaves them as drawn.
-            let _ = app.run("regenall", serde_json::json!({}));
+            // The page's own call: the menu switches do not apply.
+            let _ = hostlock::as_host(|| app.run("regenall", serde_json::json!({})));
         }
         for (id, purpose) in std::mem::take(&mut *self.byte_requests.borrow_mut()) {
             self.answer_bytes(app, id, purpose);
@@ -137,25 +155,18 @@ impl Bridge {
         }
     }
 
-    /// Open one drawing under the options that came with it. A failed open puts the earlier lock
-    /// and view back and tells the parent.
+    /// Open one drawing under the options that came with it: it replaces the drawing before it.
+    /// A failed open leaves the earlier drawing, lock and view as they were and tells the parent.
     fn open(&self, app: &mut CadApp, open: PendingOpen) {
         let lock = Lock { read_only: open.view.read_only, overrides: open.overrides.into_iter().collect() };
-        let earlier_lock = hostlock::install(Some(lock));
-        let earlier_view = app.host_view;
-        app.host_view = HostView { chrome: open.view.chrome, zoom_controls: open.view.zoom_controls };
-        app.take_open_errors();
-        hostlock::host_entry(|| app.open_bytes(&open.name, &open.bytes));
-        let errors = app.take_open_errors();
-        match errors.first() {
-            None => {
-                self.opened.set(true);
+        let view = HostView { chrome: open.view.chrome, zoom_controls: open.view.zoom_controls };
+        match app.host_open(&open.name, &open.bytes, lock, view) {
+            Ok(uid) => {
+                self.host_doc.set(Some(uid));
                 self.send(&[("type", "cadcraft:opened".into())]);
             }
-            Some(error) => {
-                hostlock::install(earlier_lock);
-                app.host_view = earlier_view;
-                self.post_failed(error);
+            Err(error) => {
+                self.post_failed(&error);
             }
         }
     }
@@ -163,27 +174,22 @@ impl Bridge {
     /// After each logic callback: tell the parent when unsaved changes appear or go away. A
     /// read-only drawing is never dirty.
     pub fn report_dirty(&self, app: &CadApp) {
-        let dirty = !hostlock::is_read_only() && app.session.docs.iter().any(|d| d.is_dirty());
+        let dirty = self.host_doc.get().is_some_and(|uid| app.host_dirty(uid));
         if self.reported.get() != Some(dirty) && self.send(&[("type", "cadcraft:dirty".into()), ("dirty", dirty.into())]) {
             self.reported.set(Some(dirty));
         }
     }
 
-    /// Run `f` as the host page: its menu overrides do not apply (they steer the user's menus), but
-    /// a read-only drawing still refuses what edits it.
-    fn as_host<R>(app: &mut CadApp, f: impl FnOnce(&mut CadApp) -> R) -> R {
-        let read_only = hostlock::is_read_only();
-        let earlier = hostlock::install(Some(Lock { read_only, overrides: Default::default() }));
-        let r = f(app);
-        hostlock::install(earlier);
-        r
+    /// The parent's drawing, when it is still the one on screen (the user can close it).
+    fn host_uid(&self, app: &CadApp) -> Option<u64> {
+        self.host_doc.get().filter(|uid| app.host_has(*uid))
     }
 
     fn answer_info(&self, app: &mut CadApp, id: String) {
-        let result = if !self.opened.get() || app.session.state().is_err() {
+        let result = if self.host_uid(app).is_none() {
             Err("not-ready".to_string())
         } else {
-            Self::as_host(app, |app| app.run("drawing.inspect", serde_json::json!({ "entities": false })))
+            hostlock::as_host(|| app.run("drawing.inspect", serde_json::json!({ "entities": false })))
         };
         match result {
             Ok(inspect) => {
@@ -206,14 +212,14 @@ impl Bridge {
     }
 
     fn run_action(&self, app: &mut CadApp, action: &gate::Action) -> Result<(), String> {
-        if !self.opened.get() || app.session.state().is_err() {
+        if self.host_uid(app).is_none() {
             return Err("not-ready".into());
         }
         let (command, params) = action.command();
         if hostlock::is_read_only() && !hostlock::read_only_ok(command) {
             return Err("read-only".into());
         }
-        Self::as_host(app, |app| app.run(command, params)).map(|_| ()).map_err(|e| gate::action_reason(&e))
+        hostlock::as_host(|| app.run(command, params)).map(|_| ()).map_err(|e| gate::action_reason(&e))
     }
 
     fn answer_bytes(&self, app: &mut CadApp, id: String, purpose: &'static str) {
@@ -241,25 +247,13 @@ impl Bridge {
         }
     }
 
-    /// The active drawing as DXF and the name it goes under. `save` also counts the drawing as
-    /// saved (the host stores what it is handed); `check` and `preview` change nothing.
+    /// The parent's drawing as DXF and the name it goes under. `save` also counts the drawing as
+    /// saved (the host stores what it is handed); `check` and `preview` change nothing. The bytes
+    /// go out as written: no base64 round trip through the command's JSON reply.
     fn drawing_bytes(&self, app: &mut CadApp, purpose: &str) -> Result<(String, Vec<u8>), String> {
-        if !self.opened.get() || app.session.state().is_err() {
-            return Err("not-ready".into());
-        }
-        // A read-only drawing is never stored.
-        if purpose == "save" && hostlock::is_read_only() {
-            return Err("read-only".into());
-        }
-        let reply = app.run("document.bytes", serde_json::json!({ "format": "dxf" }))?;
-        let data = reply.get("data").and_then(|d| d.as_str()).ok_or("the drawing gave no bytes")?;
-        let bytes = cadcraft_engine::cmd::file::base64_decode(data).ok_or("the drawing's bytes are not valid")?;
-        let state = app.session.state_mut().map_err(|e| e.to_string())?;
-        let name = gate::dxf_name(&state.title);
-        if purpose == "save" {
-            state.saved = state.doc.clone();
-        }
-        Ok((name, bytes))
+        let uid = self.host_uid(app).ok_or("not-ready")?;
+        let (title, bytes) = app.host_bytes(uid, purpose == "save")?;
+        Ok((gate::dxf_name(&title), bytes))
     }
 
     /// Hear the parent. Only its own origin and window count.

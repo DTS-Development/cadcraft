@@ -56,6 +56,17 @@ pub fn current() -> Option<Lock> {
     LOCK.with(|l| l.borrow().clone())
 }
 
+/// Run `f` as the host page itself: its menu overrides do not apply (they steer the user's menus,
+/// not what the page asks for), but a read-only drawing still refuses what edits it. With no
+/// lock in force `f` runs as it would anyway.
+pub fn as_host<R>(f: impl FnOnce() -> R) -> R {
+    let Some(read_only) = LOCK.with(|l| l.borrow().as_ref().map(|l| l.read_only)) else { return f() };
+    let earlier = install(Some(Lock { read_only, overrides: BTreeMap::new() }));
+    let r = f();
+    install(earlier);
+    r
+}
+
 /// Is the drawing read only?
 pub fn is_read_only() -> bool {
     LOCK.with(|l| l.borrow().as_ref().is_some_and(|l| l.read_only))
@@ -352,6 +363,31 @@ mod tests {
             assert_eq!(refusal("ui.dialog.layers"), None);
             assert_eq!(refusal("document.bytes"), None);
         });
+    }
+
+    /// A page's own calls (`document.bytes`, `regenall`, the viewer calls) must not depend on the
+    /// administrator's menu switches, yet a read-only drawing still refuses edits.
+    #[test]
+    fn host_calls_ignore_the_menu_policy_but_not_read_only() {
+        let off = BTreeMap::from([("document.bytes".to_string(), false), ("regenall".to_string(), false)]);
+        with_lock(Lock { read_only: false, overrides: off.clone() }, || {
+            assert!(refusal("document.bytes").unwrap().contains("switched off"));
+            as_host(|| {
+                assert_eq!(refusal("document.bytes"), None);
+                assert_eq!(refusal("regenall"), None);
+                assert!(refusal("qsave").is_some(), "locked stays locked");
+            });
+            assert!(refusal("document.bytes").is_some(), "the policy is back after the call");
+        });
+        with_lock(Lock { read_only: true, overrides: off }, || {
+            as_host(|| {
+                assert_eq!(refusal("document.bytes"), None);
+                assert!(refusal("line").unwrap().contains("read only"));
+            });
+        });
+        install(None);
+        assert_eq!(as_host(|| 7), 7);
+        assert_eq!(current(), None);
     }
 
     #[test]

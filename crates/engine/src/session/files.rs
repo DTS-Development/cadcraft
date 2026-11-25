@@ -40,6 +40,22 @@ impl Session {
         self.active
     }
 
+    /// Close every drawing but the one with `uid` and make it the active one (a host page's
+    /// open replaces the drawing instead of adding a tab). Ends a running command, forgets the
+    /// closed drawings' AutoLISP state and bumps the epoch. Returns whether anything was closed;
+    /// an unknown `uid` closes nothing.
+    pub fn keep_only(&mut self, uid: u64) -> bool {
+        if !self.docs.iter().any(|d| d.uid == uid) || self.docs.iter().all(|d| d.uid == uid) {
+            return false;
+        }
+        self.cancel();
+        self.docs.retain(|d| d.uid == uid);
+        self.lisp_forget_closed();
+        self.active = 0;
+        self.bump_doc_epoch();
+        true
+    }
+
     /// Record that which drawing is open or active changed (screenshot binding).
     pub fn bump_doc_epoch(&mut self) {
         self.doc_epoch = self.doc_epoch.wrapping_add(1);
