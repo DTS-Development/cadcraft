@@ -10,6 +10,7 @@ use serde_json::json;
 
 mod args;
 mod commands;
+mod compare;
 mod convert;
 mod error;
 mod info;
@@ -33,6 +34,7 @@ use output::Streams;
 #[cfg(test)]
 use output::{export_window, model_views, write_atomic};
 use perf::perf;
+use compare::compare;
 use roundtrip::roundtrip;
 use run::run_cmds;
 #[cfg(test)]
@@ -112,7 +114,7 @@ where
         Command::Run(a) => a.settings.apply(),
         Command::Mcp(a) => a.settings.apply(),
         Command::Sample(a) => a.settings.apply(),
-        Command::Info(_) | Command::Commands(_) | Command::Perf(_) | Command::Roundtrip(_) => {}
+        Command::Info(_) | Command::Commands(_) | Command::Perf(_) | Command::Roundtrip(_) | Command::Compare(_) => {}
     }
     let mut io = Streams::new(out, err);
     let result = match &cli.command {
@@ -124,6 +126,7 @@ where
         Command::Perf(a) => perf(a.target.as_ref(), &mut io),
         Command::Sample(a) => sample(a, &mut io),
         Command::Roundtrip(a) => roundtrip(a, &mut io),
+        Command::Compare(a) => compare(a, &mut io),
     };
     let mut code = 0;
     if let Err(e) = result {
