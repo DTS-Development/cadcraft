@@ -3,6 +3,16 @@
 //! so `cargo test` covers them on the desktop.
 #![cfg_attr(not(feature = "ppm-host"), allow(dead_code))]
 
+/// The interface language of the PPM build, from the framing page's `?lang=` value: English for
+/// `en` (or an `en-…` tag), Korean otherwise, whatever the browser or the saved preferences say.
+/// Only these two: the build embeds no font for the other CJK interfaces, and has no Japanese
+/// catalog.
+pub fn host_language(lang: Option<&str>) -> cadcraft_ui_egui::i18n::Preference {
+    use cadcraft_ui_egui::i18n::Preference;
+    let primary = lang.and_then(|l| l.trim().split(['-', '_']).next());
+    if primary.is_some_and(|l| l.eq_ignore_ascii_case("en")) { Preference::English } else { Preference::Korean }
+}
+
 /// The open options of the host's `cadcraft:open` this build understands (sent with
 /// `cadcraft:ready`). A host asking for one that is missing (an older build) is turned away
 /// instead of getting a drawing it can still edit.
@@ -210,6 +220,17 @@ mod tests {
     fn options_not_given_keep_todays_behaviour() {
         assert_eq!(view_options(None, None, None), ViewOptions { read_only: false, chrome: true, zoom_controls: false });
         assert_eq!(view_options(Some(true), Some(false), Some(true)), ViewOptions { read_only: true, chrome: false, zoom_controls: true });
+    }
+
+    #[test]
+    fn the_page_picks_english_and_anything_else_stays_korean() {
+        use cadcraft_ui_egui::i18n::Preference;
+        for en in ["en", "EN", "en-US", "en_GB", " en "] {
+            assert_eq!(host_language(Some(en)), Preference::English, "{en:?}");
+        }
+        for other in [None, Some(""), Some("ko"), Some("ja"), Some("zh"), Some("auto"), Some("english"), Some("xx")] {
+            assert_eq!(host_language(other), Preference::Korean, "{other:?}");
+        }
     }
 
     #[test]
