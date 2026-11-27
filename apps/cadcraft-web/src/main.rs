@@ -211,10 +211,12 @@ mod web {
                         {
                             log::warn!("panel layout was not restored: {error}");
                         }
-                        // The PPM build is Korean, whatever the browser or the saved preferences say.
+                        // The PPM build is Korean, or English when the framing page asks (`?lang=en`),
+                        // whatever the browser or the saved preferences say.
                         #[cfg(feature = "ppm-host")]
                         {
-                            app.ui.interface_language = cadcraft_ui_egui::i18n::Preference::Korean;
+                            let lang = web_sys::UrlSearchParams::new_with_str(&query()).ok().and_then(|p| p.get("lang"));
+                            app.ui.interface_language = crate::gate::host_language(lang.as_deref());
                         }
                         // `?cpu`: no render state for the app, so the canvas draws with egui shapes.
                         if !crate::wants_cpu(&query())
