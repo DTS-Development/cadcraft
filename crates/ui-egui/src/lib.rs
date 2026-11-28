@@ -100,6 +100,11 @@ pub struct UiState {
     pub docking: docking::Workspace,
 
     pub interface_language: i18n::Preference,
+    /// The page that frames a host build asked for no About dialog (`?about=off`): Help ▸ About
+    /// CADCraft and the toolbar's Help button are not drawn and the dialog (version, contributors,
+    /// models, community link) does not open. The host shows the open-source notices on its own
+    /// screen. Not a saved preference.
+    pub about_hidden: bool,
     pub show_toolsets: bool,
     pub show_palettes: bool,
     pub show_toolbar: bool,
@@ -197,6 +202,7 @@ impl Default for UiState {
             docking: docking::default_workspace(),
 
             interface_language: i18n::Preference::default(),
+            about_hidden: false,
             show_toolsets: true,
             show_palettes: true,
             show_toolbar: true,

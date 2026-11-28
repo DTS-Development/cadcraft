@@ -547,6 +547,8 @@ fn run_ui_command_inner(app: &mut CadApp, id: &str, params: &Value) -> Option<Re
             app.session.log.clear();
             Ok(Value::Null)
         }
+        // The framing page asked for no About dialog: the command does nothing.
+        "ui.dialog.about" if app.ui.about_hidden => Ok(Value::Null),
         "ui.dialog.language"
         | "ui.dialog.layers"
         | "ui.dialog.dsettings"
@@ -695,7 +697,7 @@ pub fn tree(app: &CadApp) -> Vec<(String, Vec<Entry>)> {
     let mut add = |path: &[&str], label: &str, id: &str, shortcut: Option<&str>, enabled: bool| {
         // The host page's lock: a locked or switched-off command is not in the menu, and one a
         // read-only drawing refuses is greyed out.
-        if cadcraft_engine::hostlock::hidden(id) {
+        if cadcraft_engine::hostlock::hidden(id) || (id == "ui.dialog.about" && app.ui.about_hidden) {
             return;
         }
         let enabled = enabled && cadcraft_engine::hostlock::refusal(id).is_none();
@@ -1033,6 +1035,41 @@ mod tests {
 
     fn fake_plot(_: &cadcraft_doc::Drawing, _: &cadcraft_doc::Space, _: &Value) -> Result<Vec<u8>, String> {
         Ok(b"%PDF-1.4 test".to_vec())
+    }
+
+    /// `?about=off`: Help ▸ About CADCraft is not in the menu and the command opens nothing; without
+    /// it both are there, and the rest of the Help menu is the same.
+    #[test]
+    fn a_page_that_asked_for_no_about_gets_no_about_entry_and_no_dialog() {
+        fn ids(app: &CadApp) -> Vec<String> {
+            fn walk(es: &[super::Entry], out: &mut Vec<String>) {
+                for e in es {
+                    match e {
+                        super::Entry::Item { id, .. } => out.push(id.clone()),
+                        super::Entry::Sub { children, .. } => walk(children, out),
+                    }
+                }
+            }
+            let mut out = Vec::new();
+            for (_, es) in super::tree(app) {
+                walk(&es, &mut out);
+            }
+            out
+        }
+        let mut app = CadApp::new(Session::new(), Services::default());
+        let before = ids(&app);
+        assert!(before.iter().any(|i| i == "ui.dialog.about") && before.iter().any(|i| i == "ui.dialog.commands"));
+        assert!(app.run("ui.dialog.about", json!({})).is_ok());
+        assert_eq!(app.ui.dialog.as_deref(), Some("about"), "About opens by default");
+        app.ui.dialog = None;
+        app.ui.about_hidden = true;
+        let after = ids(&app);
+        assert!(!after.iter().any(|i| i == "ui.dialog.about"), "no About entry");
+        assert_eq!(after.len() + 1, before.len(), "only the About entry left the menus");
+        assert!(app.run("ui.dialog.about", json!({})).is_ok());
+        assert_eq!(app.ui.dialog, None, "About stays shut");
+        assert!(app.run("ui.dialog.commands", json!({})).is_ok());
+        assert_eq!(app.ui.dialog.as_deref(), Some("commands"), "the command reference still opens");
     }
 
     /// An app whose save dialog records the suggested name and answers `answer`.

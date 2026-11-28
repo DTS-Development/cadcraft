@@ -13,6 +13,13 @@ pub fn host_language(lang: Option<&str>) -> cadcraft_ui_egui::i18n::Preference {
     if primary.is_some_and(|l| l.eq_ignore_ascii_case("en")) { Preference::English } else { Preference::Korean }
 }
 
+/// Whether the page leaves the About dialog out: only `?about=off` (also `0`, `false`, `no`) does.
+/// The framing page shows the open-source notices itself and wants no version / contributors /
+/// community dialog on its screen. Read by the PPM build only.
+pub fn about_hidden(requested: Option<&str>) -> bool {
+    requested.is_some_and(|v| matches!(v.trim().to_ascii_lowercase().as_str(), "off" | "0" | "false" | "no"))
+}
+
 /// The open options of the host's `cadcraft:open` this build understands (sent with
 /// `cadcraft:ready`). A host asking for one that is missing (an older build) is turned away
 /// instead of getting a drawing it can still edit.
@@ -220,6 +227,16 @@ mod tests {
     fn options_not_given_keep_todays_behaviour() {
         assert_eq!(view_options(None, None, None), ViewOptions { read_only: false, chrome: true, zoom_controls: false });
         assert_eq!(view_options(Some(true), Some(false), Some(true)), ViewOptions { read_only: true, chrome: false, zoom_controls: true });
+    }
+
+    #[test]
+    fn about_is_left_out_only_when_the_page_asks() {
+        for off in ["off", "OFF", "0", "false", "no", " off "] {
+            assert!(about_hidden(Some(off)), "{off:?}");
+        }
+        for keep in [None, Some(""), Some("on"), Some("1"), Some("true"), Some("hide")] {
+            assert!(!about_hidden(keep), "{keep:?}");
+        }
     }
 
     #[test]

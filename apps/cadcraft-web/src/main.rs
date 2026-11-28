@@ -217,6 +217,9 @@ mod web {
                         {
                             let lang = web_sys::UrlSearchParams::new_with_str(&query()).ok().and_then(|p| p.get("lang"));
                             app.ui.interface_language = crate::gate::host_language(lang.as_deref());
+                            // `?about=off`: no About entry, Help button or dialog (see `about_hidden`).
+                            let about = web_sys::UrlSearchParams::new_with_str(&query()).ok().and_then(|p| p.get("about"));
+                            app.ui.about_hidden = crate::gate::about_hidden(about.as_deref());
                         }
                         // `?cpu`: no render state for the app, so the canvas draws with egui shapes.
                         if !crate::wants_cpu(&query())

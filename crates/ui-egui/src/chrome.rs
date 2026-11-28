@@ -40,6 +40,12 @@ const TOOLBAR: &[&[(Icon, &str, &str, Option<&str>)]] = &[
     &[(Icon::Help, "ui.dialog.about", "Help", None)],
 ];
 
+/// The toolbar groups to draw: all of them, or without the last one (the Help button, which opens
+/// About) when the framing page asked for no About dialog.
+fn toolbar_groups(about_hidden: bool) -> &'static [&'static [(Icon, &'static str, &'static str, Option<&'static str>)]] {
+    if about_hidden { &TOOLBAR[..TOOLBAR.len() - 1] } else { TOOLBAR }
+}
+
 /// Height of the macOS integrated title row (#161). AppKit draws the traffic lights itself,
 /// centred in the standard 28 pt title-bar band at the top of the window; moving them would take
 /// AppKit calls (`unsafe`, which the workspace forbids). So the title row is that band, and what
@@ -87,14 +93,15 @@ pub fn title_and_toolbar(app: &mut CadApp, ui: &mut egui::Ui) {
             let size = 26.0;
             let mut clicked = None;
             let mac = ui.ctx().os().is_mac();
-            let widths: Vec<_> = TOOLBAR.iter().map(|group| group.len() as f32 * (size + 6.0) - 6.0).collect();
+            let toolbar = toolbar_groups(app.ui.about_hidden);
+            let widths: Vec<_> = toolbar.iter().map(|group| group.len() as f32 * (size + 6.0) - 6.0).collect();
             let available = (row.right() - 12.0 - x).max(0.0);
             let Some(fit) = craft_ui::layout::fit_toolbar(&widths, available, 24.0, 30.0) else {
                 // Very small windows still expose the complete command row by scrolling.
                 ui.scope_builder(egui::UiBuilder::new().max_rect(row.shrink2(vec2(4.0, 0.0))), |ui| {
                     egui::ScrollArea::horizontal().id_salt("toolbar_small").show(ui, |ui| {
                         ui.horizontal(|ui| {
-                            for group in TOOLBAR {
+                            for group in toolbar {
                                 for (icon, cmd, tip, _) in *group {
                                     if icons::button(ui, *icon, size, tip, false).clicked() {
                                         clicked = Some(*cmd);
@@ -111,7 +118,7 @@ pub fn title_and_toolbar(app: &mut CadApp, ui: &mut egui::Ui) {
                 return;
             };
             for (index, _) in &fit.shown {
-                let Some(group) = TOOLBAR.get(*index) else { continue };
+                let Some(group) = toolbar.get(*index) else { continue };
                 for (icon, cmd, label, shortcut) in group.iter() {
                     let br = Rect::from_min_size(pos2(x, row.center().y - size / 2.0), vec2(size, size));
                     let resp = ui.interact(br, ui.scope_id().with(("tb", *cmd)), Sense::click());
@@ -143,7 +150,7 @@ pub fn title_and_toolbar(app: &mut CadApp, ui: &mut egui::Ui) {
                 icons::describe_control(ui, &response, "More toolbar commands", None, false);
                 egui::Popup::menu(&response).show(|ui| {
                     for (position, index) in fit.overflow.iter().enumerate() {
-                        let Some(group) = TOOLBAR.get(*index) else { continue };
+                        let Some(group) = toolbar.get(*index) else { continue };
                         if position > 0 {
                             ui.separator();
                         }
